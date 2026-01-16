@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maithreyan Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaqueries.css"/>
+  </head>
+  <body>
+    <nav id="desktop-nav">
+      <div class="logo" data-scroll="#profile">Maithreyan</div>
+      <button class="theme-toggle" aria-label="Toggle theme" aria-pressed="false">
+        <!-- SVG will be set by JS -->
+      </button>
+      <!-- Floating circular menu button (icon-only, top-right) -->
+      <button class="circle-menu" aria-label="Open menu" aria-expanded="false">
+        <!-- Inline hamburger SVG (accessible) -->
+        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div>
+        <ul class="nav-links">
+        </ul>
+      </div>
+    </nav>
+    <nav id="hamburger-nav">
+      <div class="logo" data-scroll="#profile">Maithreyan D</div>
+        <div class="menu-links">
+        </div>
+      </div>
+    </nav>
+    
+    <!-- Full-screen menu overlay used by the circular reveal -->
+    <div class="menu-overlay" aria-hidden="true">
+      <nav class="overlay-nav">
+        <ul class="overlay-links">
+        </ul>
+      </nav>
+    </div>
+    <!-- Fixed theme toggle (top-right) -->
+    <button class="theme-toggle theme-fab" aria-label="Toggle theme" aria-pressed="false"></button>
+    <!-- Floating circular quick menu (profile/experience/projects/contact) -->
+    <div id="quick-menu" class="quick-menu" aria-label="Quick navigation">
+      <button class="quick-btn" data-scroll="#profile" aria-label="Profile">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zM5 19c0-3.3 3.1-5 7-5s7 1.7 7 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        <span class="label">Profile</span>
+      </button>
+      <button class="quick-btn" data-scroll="#experience" aria-label="Experience">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16M8 7V5h8v2M9 12v-2m6 2v-2m-9 7v-2m12 2v-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        <span class="label">Experience</span>
+      </button>
+      <button class="quick-btn" data-scroll="#projects" aria-label="Projects">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v6H5zM5 13h6v6H5zM13 13h6v6h-6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="none"/></svg>
+        <span class="label">Projects</span>
+      </button>
+      <button class="quick-btn" data-scroll="#contact" aria-label="Contact">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v12H5.5L4 19.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M6 8l5 4 5-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="label">Contact</span>
+      </button>
+    </div>
+    <section id="profile">
+      <div class="section__pic-container">
+        <img id="profile-pic" class="profile-pic" src="./assets/profile-pic.png" alt="Maithreyan D picture" />
+      </div>
+      <div class="section__text">
+        <p class="section__text__p1">Hello, I'am</p>
+        <h1 class="title">Maithreyan D</h1>
+        <p class="section__text__p2">Full Stack Developer</p>
+        <div class="btn-container">
+          <button class="btn btn-color-2 btn-download" onclick="window.open('./assets/resume-example.pdf')">Download CV</button>
+          <button class="btn btn-color-1" data-scroll="#contact">Contact Info</button>
+        </div>
+
+        <!-- socials replaced below using provided PNG assets -->
+        <div id="socials-container">
+          <a class="social-icon" href="mailto:maithreyan2006@gmail.com" aria-label="Email" target="_blank" rel="noopener noreferrer">
+            <img src="./assets/email.png" alt="Email" />
+          </a>
+
+          <a class="social-icon" href="https://www.linkedin.com/in/maithreyan-d-93924a2a6" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+            <img src="./assets/linkedin.png" alt="LinkedIn" />
+          </a>
+
+          <a class="social-icon" href="https://github.com/maithreyan12" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+            <img src="./assets/github.png" alt="GitHub" />
+          </a>
+        </div>
+
+        <!-- Vertical icon column on the right side of profile (uses provided PNGs) -->
+        <div class="profile-icons-column" aria-hidden="false">
+          <a class="profile-icon" href="#experience" title="Experience"><img src="./assets/experience.png" alt="Experience"/></a>
+          <a class="profile-icon" href="#about" title="Education"><img src="./assets/education.png" alt="Education"/></a>
+          <a class="profile-icon" href="#experience" title="Checkmark"><img src="./assets/checkmark.png" alt="Check"/></a>
+          <a class="profile-icon" href="mailto:maithreyan2006@gmail.com" title="Email"><img src="./assets/email.png" alt="Email"/></a>
+          <a class="profile-icon" href="https://www.linkedin.com/in/maithreyan-d-93924a2a6" title="LinkedIn"><img src="./assets/linkedin.png" alt="LinkedIn"/></a>
+          <a class="profile-icon" href="https://github.com/maithreyan12" title="GitHub"><img src="./assets/github.png" alt="GitHub"/></a>
+          <a class="profile-icon" href="#projects" title="Arrow"><img src="./assets/arrow.png" alt="Arrow"/></a>
+        </div>
+      </div>
+    </section>
+    <section id="about">
+     <b><p class="section__text__p1">Get To Know More</p></b>
+      <h1 class="title">About Me</h1>
+      <div class="section-container">
+        <div class="section__pic-container">
+          <img
+            src="./assets/about-pic.jpeg"
+            alt="Profile picture"
+            class="about-pic"
+          />
+        </div>
+        <div class="about-details-container">
+          <div class="about-containers">
+            <div class="details-container">
+              <img
+                src="./assets/experience.png"
+                alt="Experience icon"
+                class="icon"
+              />
+              <h3>Experience</h3>
+              <p>2+ years<br />Frontend Development</p>
+            </div>
+            <div class="details-container">
+              <img
+                src="./assets/education.png"
+                alt="Education icon"
+                class="icon"
+              />
+              <h3>Education</h3>
+              <p>B-TECH<br />Information Technology</p>
+            </div>
+          </div>
+          <div class="text-container">
+            <p>
+             I’m an enthusiastic Information Technology student in my 3rd year, passionate about designing and developing modern, user-friendly websites. With hands-on experience in HTML, CSS, JavaScript, and frameworks like React and Django, I love turning creative ideas into functional, responsive designs. As a Mac user, I’m proficient in using macOS development environments such as VS Code, Xcode, and design tools like Figma for UI/UX creation. I’m comfortable with cross-platform testing and optimization to ensure a seamless user experience. Currently exploring both front-end and full-stack development, I’m eager to apply my skills in real-world projects and collaborate with teams to build impactful digital solutions.
+            </p>
+          </div>
+        </div>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#experience'"
+      />
+    </section>
+    <section id="experience">
+      <p class="section__text__p1">Explore My</p>
+      <h1 class="title">Experience</h1>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <div class="details-container">
+            <h2 class="experience-sub-title">Frontend Development</h2>
+            <div class="article-container">
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>HTML</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>CSS</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>SASS</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>JavaScript</h3>
+                  <p>Basic</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>TypeScript</h3>
+                  <p>Basic</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Material UI</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="details-container">
+            <h2 class="experience-sub-title">Frontend Development</h2>
+            <div class="article-container">
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>PostgreSQL</h3>
+                  <p>Basic</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Node JS</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Express JS</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Git</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#projects'"
+      />
+    </section>
+    <section id="projects">
+      <p class="section__text__p1">Browse My Recent</p>
+      <h1 class="title">Projects</h1>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/project-1.png"
+                alt="Project 1"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Project One</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+                Live Demo
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/project-2.png"
+                alt="Project 2"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Project Two</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+                Live Demo
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/project-3.png"
+                alt="Project 3"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Project Three</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+                Live Demo
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#contact'"
+      />
+    </section>
+    <section id="contact">
+      <p class="section__text__p1">Get in Touch</p>
+      <h1 class="title">Contact Me</h1>
+      <div class="contact-info-upper-container">
+        <div class="contact-info-container">
+          <img
+            src="./assets/email.png"
+            alt="Email icon"
+            class="icon contact-icon email-icon"
+          />
+          <p><a href="mailto:examplemail@gmail.com">maithreyan2006@gmail.com</a></p>
+        </div>
+        <div class="contact-info-container">
+          <img
+            src="./assets/linkedin.png"
+            alt="LinkedIn icon"
+            class="icon contact-icon"
+          />
+          <p><a href="https://www.linkedin.com/in/maithreyan-d-93924a2a6">LinkedIn</a></p>
+        </div>
+      </div>
+      <!-- New contact form (UI-only). Does not submit to server — it's a UI placeholder to match requested design. -->
+      <div class="contact-form-wrapper">
+        <form id="contact-form" class="contact-form" action="#" onsubmit="event.preventDefault(); alert('Form submitted (UI demo)');">
+          <div class="form-row">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" required />
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required />
+          </div>
+          <div class="form-row">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" placeholder="(+91) 98765 43210" />
+          </div>
+          <div class="form-row">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell me about your project" rows="5" required></textarea>
+          </div>
+          <div class="form-row form-actions">
+            <button class="btn btn-color-1" type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </section>
+    <footer>
+      <p>Created By Maithreyan D </p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

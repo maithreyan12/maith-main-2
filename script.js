@@ -628,3 +628,486 @@ document.addEventListener('DOMContentLoaded', () => {
   // start
   showPhrase(0);
 })();
+
+// AI Chatbot for Portfolio Contact Details
+// ============================================
+// CONFIGURATION INSTRUCTIONS:
+// 1. To use ChatGPT: Get API key from https://platform.openai.com/api-keys
+//    - Add your key to: aiConfig.chatgpt.apiKey
+//    - Set: aiConfig.provider = 'chatgpt'
+//
+// 2. To use Gemini: Get API key from https://makersuite.google.com/app/apikey
+//    - Add your key to: aiConfig.gemini.apiKey
+//    - Set: aiConfig.provider = 'gemini'
+//
+// 3. The chatbot will first try to answer locally (contact info, skills, etc.)
+//    If no local match, it will use the configured AI API
+// ============================================
+
+(function chatbotAI() {
+  const toggle = document.getElementById('chatbot-toggle');
+  const window = document.getElementById('chatbot-window');
+  const closeBtn = document.getElementById('chatbot-close');
+  const messagesContainer = document.getElementById('chatbot-messages');
+  const input = document.getElementById('chatbot-input');
+  const sendBtn = document.getElementById('chatbot-send');
+
+  if (!toggle || !window) return;
+
+  // Contact information database
+  const contactInfo = {
+    email: 'maithreyan2006@gmail.com',
+    linkedin: 'https://www.linkedin.com/in/maithreyan-d-93924a2a6',
+    github: 'https://github.com/maithreyan12',
+    name: 'Maithreyan',
+    title: 'Full Stack Developer',
+    education: 'B.Tech Information Technology',
+    experience: '2+ years in Frontend Development',
+    location: 'India'
+  };
+
+  const skills = {
+    frontend: ['HTML', 'CSS', 'SASS', 'JavaScript', 'TypeScript', 'Material UI'],
+    backend: ['PostgreSQL', 'Node.js', 'Express.js', 'Git'],
+    level: {
+      'HTML': 'Experienced',
+      'CSS': 'Experienced',
+      'SASS': 'Intermediate',
+      'JavaScript': 'Basic',
+      'TypeScript': 'Basic',
+      'Material UI': 'Intermediate',
+      'PostgreSQL': 'Basic',
+      'Node.js': 'Intermediate',
+      'Express.js': 'Intermediate',
+      'Git': 'Intermediate'
+    }
+  };
+
+  // Toggle chat window
+  function toggleChat() {
+    const isActive = window.classList.contains('active');
+    window.classList.toggle('active');
+    toggle.setAttribute('aria-expanded', !isActive);
+    window.setAttribute('aria-hidden', isActive);
+    if (!isActive) {
+      input.focus();
+    }
+  }
+
+  toggle.addEventListener('click', toggleChat);
+  closeBtn.addEventListener('click', toggleChat);
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && window.classList.contains('active')) {
+      toggleChat();
+    }
+  });
+
+  // Add message to chat
+  function addMessage(text, isUser = false) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `chatbot-message ${isUser ? 'user-message' : 'bot-message'}`;
+    
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'message-content';
+    
+    if (typeof text === 'string') {
+      const p = document.createElement('p');
+      p.textContent = text;
+      contentDiv.appendChild(p);
+    } else {
+      contentDiv.innerHTML = text;
+    }
+    
+    messageDiv.appendChild(contentDiv);
+    messagesContainer.appendChild(messageDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    
+    return messageDiv;
+  }
+
+  // Typewriter effect for bot messages
+  function typeMessage(element, text, speed = 30) {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      element.innerHTML = text;
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      return;
+    }
+
+    let i = 0;
+    element.innerHTML = '';
+    const timer = setInterval(() => {
+      if (i < text.length) {
+        element.innerHTML += text.charAt(i);
+        i++;
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      } else {
+        clearInterval(timer);
+      }
+    }, speed);
+  }
+
+  // Natural language processing - pattern matching
+  function processMessage(userMessage) {
+    const msg = userMessage.toLowerCase().trim();
+    
+    // Greetings
+    if (msg.match(/\b(hi|hello|hey|greetings|good morning|good afternoon|good evening)\b/)) {
+      return `Hello! 👋 I'm <strong>Maithreyan</strong>, your AI assistant. I'm here to help you learn about my portfolio. What would you like to know?`;
+    }
+
+    // Email
+    if (msg.match(/\b(email|e-mail|mail|contact email|email address)\b/)) {
+      return `📧 Email: <a href="mailto:${contactInfo.email}" target="_blank">${contactInfo.email}</a><br><br>You can reach out directly via email for collaborations, job opportunities, or any inquiries!`;
+    }
+
+    // LinkedIn
+    if (msg.match(/\b(linkedin|linked in|linked-in|professional|network|profile)\b/)) {
+      return `💼 LinkedIn: <a href="${contactInfo.linkedin}" target="_blank" rel="noopener noreferrer">${contactInfo.linkedin}</a><br><br>Connect on LinkedIn to see professional experience and updates!`;
+    }
+
+    // GitHub
+    if (msg.match(/\b(github|git hub|git-hub|code|repository|repos|projects|portfolio)\b/)) {
+      return `💻 GitHub: <a href="${contactInfo.github}" target="_blank" rel="noopener noreferrer">${contactInfo.github}</a><br><br>Check out the code repositories and projects on GitHub!`;
+    }
+
+    // Contact info summary
+    if (msg.match(/\b(contact|contact info|contact details|how to reach|get in touch|reach out)\b/)) {
+      return `📞 Contact Information:<br><br>
+        📧 Email: <a href="mailto:${contactInfo.email}">${contactInfo.email}</a><br>
+        💼 LinkedIn: <a href="${contactInfo.linkedin}" target="_blank">LinkedIn Profile</a><br>
+        💻 GitHub: <a href="${contactInfo.github}" target="_blank">GitHub Profile</a><br><br>
+        Feel free to reach out through any of these channels!`;
+    }
+
+    // Skills
+    if (msg.match(/\b(skills|technologies|tech stack|what can|abilities|expertise|proficient)\b/)) {
+      const frontendList = skills.frontend.map(s => `• ${s} (${skills.level[s]})`).join('<br>');
+      const backendList = skills.backend.map(s => `• ${s} (${skills.level[s]})`).join('<br>');
+      return `🛠️ Skills & Technologies:<br><br>
+        <strong>Frontend:</strong><br>${frontendList}<br><br>
+        <strong>Backend:</strong><br>${backendList}`;
+    }
+
+    // Experience
+    if (msg.match(/\b(experience|years|how long|background|work|professional)\b/)) {
+      return `💼 Experience: ${contactInfo.experience}<br><br>
+        ${contactInfo.name} has hands-on experience in HTML, CSS, JavaScript, and frameworks like React and Django. 
+        Proficient in designing and developing modern, user-friendly websites with a focus on responsive design.`;
+    }
+
+    // Education
+    if (msg.match(/\b(education|degree|university|college|study|studying|student)\b/)) {
+      return `🎓 Education: ${contactInfo.education}<br><br>
+        Currently pursuing a Bachelor's degree in Information Technology, 
+        passionate about full-stack development and modern web technologies.`;
+    }
+
+    // About/Who
+    if (msg.match(/\b(who|about|tell me|introduce|background|info about)\b/)) {
+      return `👋 About ${contactInfo.name}:<br><br>
+        ${contactInfo.name} is a ${contactInfo.title} and an enthusiastic Information Technology student. 
+        Passionate about designing and developing modern, user-friendly websites. 
+        Experienced with HTML, CSS, JavaScript, React, Django, and design tools like Figma. 
+        Currently exploring both front-end and full-stack development.`;
+    }
+
+    // Projects
+    if (msg.match(/\b(projects|portfolio|work|what has|built|created|show me)\b/)) {
+      return `🚀 Projects:<br><br>
+        Check out the Projects section on this portfolio to see recent work! 
+        You can also visit the <a href="${contactInfo.github}" target="_blank">GitHub profile</a> 
+        to explore code repositories and contributions.`;
+    }
+
+    // Help
+    if (msg.match(/\b(help|what can|what do|assist|support|commands)\b/)) {
+      return `💡 I can help you with:<br><br>
+        • Contact information (email, LinkedIn, GitHub)<br>
+        • Skills and technologies<br>
+        • Experience and background<br>
+        • Education details<br>
+        • Projects and portfolio<br><br>
+        Just ask me anything about ${contactInfo.name}'s portfolio!`;
+    }
+
+    // Return null if no local match - will use AI API
+    return null;
+  }
+
+  // AI API Configuration
+  const aiConfig = {
+    // Choose 'chatgpt' or 'gemini'
+    provider: 'chatgpt', // Change to 'gemini' to use Google Gemini
+    
+    // ChatGPT Configuration (OpenAI)
+    chatgpt: {
+      apiKey: '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',
+      apiUrl: 'https://api.openai.com/v1/chat/completions',
+      model: 'gpt-3.5-turbo'
+    },
+    
+    // Gemini Configuration (Google)
+    gemini: {
+      apiKey: 'AIzaSyBJkp-xhSuvBeUK0T4T0-iNQ39r-4-BFE8',
+      apiUrl: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent'
+    }
+  };
+
+  // Get AI response from ChatGPT
+  async function getChatGPTResponse(userMessage) {
+    if (!aiConfig.chatgpt.apiKey) {
+      return '⚠️ ChatGPT API key not configured. Please add your OpenAI API key in the chatbot configuration.';
+    }
+
+    const portfolioContext = `You are Maithreyan, an AI assistant helping visitors learn about Maithreyan's portfolio. 
+    Here is the portfolio information:
+    - Name: Maithreyan
+    - Title: ${contactInfo.title}
+    - Email: ${contactInfo.email}
+    - LinkedIn: ${contactInfo.linkedin}
+    - GitHub: ${contactInfo.github}
+    - Education: ${contactInfo.education}
+    - Experience: ${contactInfo.experience}
+    - Skills: Frontend: ${skills.frontend.join(', ')}, Backend: ${skills.backend.join(', ')}
+    
+    Always introduce yourself as Maithreyan first. Answer the user's question in a friendly, helpful manner. Keep responses concise and relevant. 
+    If asked about contact info, provide the actual email, LinkedIn, or GitHub links.`;
+
+    try {
+      // Create AbortController for timeout
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
+      const response = await fetch(aiConfig.chatgpt.apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${aiConfig.chatgpt.apiKey}`
+        },
+        body: JSON.stringify({
+          model: aiConfig.chatgpt.model,
+          messages: [
+            { role: 'system', content: portfolioContext },
+            { role: 'user', content: userMessage }
+          ],
+          max_tokens: 200, // Reduced for faster responses
+          temperature: 0.7,
+          stream: false
+        }),
+        signal: controller.signal
+      });
+
+      clearTimeout(timeoutId);
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error?.message || `API error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+        throw new Error('Invalid response format from ChatGPT');
+      }
+      return data.choices[0].message.content.trim();
+    } catch (error) {
+      console.error('ChatGPT API Error:', error);
+      if (error.name === 'AbortError') {
+        return `Sorry, the request timed out. Please try again with a shorter question or ask about contact info, skills, or experience.`;
+      }
+      return `Sorry, I'm having trouble connecting to ChatGPT. ${error.message || 'Please try again later or ask about contact info, skills, or experience.'}`;
+    }
+  }
+
+  // Get AI response from Gemini
+  async function getGeminiResponse(userMessage) {
+    if (!aiConfig.gemini.apiKey) {
+      return '⚠️ Gemini API key not configured. Please add your Google Gemini API key in the chatbot configuration.';
+    }
+
+    const portfolioContext = `You are Maithreyan, an AI assistant helping visitors learn about Maithreyan's portfolio. 
+    Here is the portfolio information:
+    - Name: Maithreyan
+    - Title: ${contactInfo.title}
+    - Email: ${contactInfo.email}
+    - LinkedIn: ${contactInfo.linkedin}
+    - GitHub: ${contactInfo.github}
+    - Education: ${contactInfo.education}
+    - Experience: ${contactInfo.experience}
+    - Skills: Frontend: ${skills.frontend.join(', ')}, Backend: ${skills.backend.join(', ')}
+    
+    Always introduce yourself as Maithreyan first. Answer the user's question in a friendly, helpful manner. Keep responses concise and relevant. 
+    If asked about contact info, provide the actual email, LinkedIn, or GitHub links.`;
+
+    try {
+      const url = `${aiConfig.gemini.apiUrl}?key=${aiConfig.gemini.apiKey}`;
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          contents: [{
+            parts: [{
+              text: `${portfolioContext}\n\nUser question: ${userMessage}`
+            }]
+          }]
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`API error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      return data.candidates[0].content.parts[0].text;
+    } catch (error) {
+      console.error('Gemini API Error:', error);
+      return `Sorry, I'm having trouble connecting to Gemini. Error: ${error.message}. Please try again later or ask about contact info, skills, or experience.`;
+    }
+  }
+
+  // Get AI response (ChatGPT or Gemini)
+  async function getAIResponse(userMessage) {
+    if (aiConfig.provider === 'gemini') {
+      return await getGeminiResponse(userMessage);
+    } else {
+      return await getChatGPTResponse(userMessage);
+    }
+  }
+
+  // Display bot response with typing effect
+  function displayBotResponse(botResponse) {
+    const botMessage = addMessage('', false);
+    const contentDiv = botMessage.querySelector('.message-content');
+    
+    // Use typewriter effect for HTML content
+    if (botResponse.includes('<')) {
+      contentDiv.innerHTML = '';
+      let html = botResponse;
+      let text = '';
+      let i = 0;
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      
+      if (prefersReduced) {
+        contentDiv.innerHTML = html;
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        input.disabled = false;
+        sendBtn.disabled = false;
+        input.focus();
+        return;
+      }
+
+      const timer = setInterval(() => {
+        if (i < html.length) {
+          text += html.charAt(i);
+          // Only update if we've completed a tag or text segment
+          if (html.charAt(i) === '>' || (html.charAt(i) === '<' && i > 0 && html.charAt(i-1) !== '<')) {
+            contentDiv.innerHTML = text;
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          }
+          i++;
+        } else {
+          contentDiv.innerHTML = html;
+          clearInterval(timer);
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          input.disabled = false;
+          sendBtn.disabled = false;
+          input.focus();
+        }
+      }, 10); // Faster typing speed (reduced from 20ms to 10ms)
+    } else {
+      typeMessage(contentDiv, botResponse, 10); // Faster typing speed
+      setTimeout(() => {
+        input.disabled = false;
+        sendBtn.disabled = false;
+        input.focus();
+      }, botResponse.length * 10 + 50); // Reduced delay
+    }
+  }
+
+  // Send message - optimized for speed
+  async function sendMessage() {
+    const userMessage = input.value.trim();
+    if (!userMessage) return;
+
+    // Add user message immediately
+    addMessage(userMessage, true);
+    input.value = '';
+
+    // Disable input while processing
+    input.disabled = true;
+    sendBtn.disabled = true;
+
+    let thinkingMessage = null;
+    let loadingMessage = null;
+
+    try {
+      // Try local response first (instant)
+      let botResponse = processMessage(userMessage);
+
+      // If no local response, use AI API
+      if (botResponse === null) {
+        // Show loading message immediately
+        loadingMessage = addMessage('🤖 Connecting to ChatGPT...', false);
+        
+        try {
+          // Get AI response with timeout
+          botResponse = await getAIResponse(userMessage);
+          if (!botResponse || botResponse.trim() === '') {
+            throw new Error('Empty response from AI');
+          }
+        } catch (apiError) {
+          console.error('AI API Error:', apiError);
+          botResponse = `Sorry, I encountered an error: ${apiError.message || 'Unable to connect to ChatGPT'}. Please try asking about contact info, skills, experience, or projects.`;
+        }
+        
+        // Remove loading message
+        if (loadingMessage && loadingMessage.parentNode) {
+          loadingMessage.remove();
+        }
+      }
+
+      // Ensure we have a response
+      if (!botResponse) {
+        botResponse = `I'm not sure how to answer that. Could you ask about contact info, skills, experience, education, or projects?`;
+      }
+
+      // Display the response immediately
+      displayBotResponse(botResponse);
+    } catch (error) {
+      console.error('Send message error:', error);
+      // Clean up any messages
+      if (thinkingMessage && thinkingMessage.parentNode) {
+        thinkingMessage.remove();
+      }
+      if (loadingMessage && loadingMessage.parentNode) {
+        loadingMessage.remove();
+      }
+      
+      // Show error message
+      const errorResponse = `Sorry, something went wrong. Please try again or ask about contact info, skills, experience, or projects.`;
+      displayBotResponse(errorResponse);
+    }
+  }
+
+  // Event listeners
+  sendBtn.addEventListener('click', sendMessage);
+  input.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+
+  // Auto-focus input when window opens
+  toggle.addEventListener('click', () => {
+    setTimeout(() => {
+      if (window.classList.contains('active')) {
+        input.focus();
+      }
+    }, 100);
+  });
+})();

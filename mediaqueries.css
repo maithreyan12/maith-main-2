@@ -47,6 +47,16 @@
   }
 }
 
+/* Additional responsive tweaks */
+@media screen and (max-width: 900px) {
+  section {
+    margin: 0 3rem;
+  }
+  .nav-links {
+    font-size: 1.25rem;
+  }
+}
+
 @media screen and (max-width: 600px) {
   #contact,
   footer {
@@ -100,19 +110,6 @@
   .text-container {
     text-align: justify;
   }
-}
-
-/* Additional responsive tweaks */
-@media screen and (max-width: 900px) {
-  section {
-    margin: 0 3rem;
-  }
-  .nav-links {
-    font-size: 1.25rem;
-  }
-}
-
-@media screen and (max-width: 600px) {
   /* Make buttons full width on small screens */
   .btn-container {
     gap: 0.5rem;

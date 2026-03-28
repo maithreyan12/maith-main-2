@@ -646,13 +646,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 (function chatbotAI() {
   const toggle = document.getElementById('chatbot-toggle');
-  const window = document.getElementById('chatbot-window');
+  const chatbotWindow = document.getElementById('chatbot-window');
   const closeBtn = document.getElementById('chatbot-close');
   const messagesContainer = document.getElementById('chatbot-messages');
   const input = document.getElementById('chatbot-input');
   const sendBtn = document.getElementById('chatbot-send');
 
-  if (!toggle || !window) return;
+  if (!toggle || !chatbotWindow) return;
 
   // Contact information database
   const contactInfo = {
@@ -685,10 +685,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Toggle chat window
   function toggleChat() {
-    const isActive = window.classList.contains('active');
-    window.classList.toggle('active');
+    const isActive = chatbotWindow.classList.contains('active');
+    chatbotWindow.classList.toggle('active');
     toggle.setAttribute('aria-expanded', !isActive);
-    window.setAttribute('aria-hidden', isActive);
+    chatbotWindow.setAttribute('aria-hidden', isActive);
     if (!isActive) {
       input.focus();
     }
@@ -699,7 +699,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Close on Escape key
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && window.classList.contains('active')) {
+    if (e.key === 'Escape' && chatbotWindow.classList.contains('active')) {
       toggleChat();
     }
   });
@@ -1105,7 +1105,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Auto-focus input when window opens
   toggle.addEventListener('click', () => {
     setTimeout(() => {
-      if (window.classList.contains('active')) {
+      if (chatbotWindow.classList.contains('active')) {
         input.focus();
       }
     }, 100);

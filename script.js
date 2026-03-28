@@ -1111,3 +1111,64 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100);
   });
 })();
+
+// Contact form → EmailJS (public key is safe in the browser)
+(function contactFormEmailJS() {
+  const EMAILJS_PUBLIC_KEY = "vG36awI5N4SNk9J2o";
+  const EMAILJS_SERVICE_ID = "service_tqvd4hh";
+  const EMAILJS_TEMPLATE_ID = "template_z7pba0d";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("contact-form");
+    const statusEl = document.getElementById("contact-form-status");
+    if (!form || typeof emailjs === "undefined") {
+      if (statusEl && typeof emailjs === "undefined") {
+        statusEl.textContent = "Could not load EmailJS. Check your network or ad blocker.";
+      }
+      return;
+    }
+
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("name")?.value?.trim() || "";
+      const email = document.getElementById("email")?.value?.trim() || "";
+      const phone = document.getElementById("phone")?.value?.trim() || "";
+      const message = document.getElementById("message")?.value?.trim() || "";
+
+      if (statusEl) statusEl.textContent = "";
+
+      const originalLabel = submitBtn ? submitBtn.textContent : "";
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending…";
+      }
+
+      emailjs
+        .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+          name,
+          email,
+          phone,
+          message,
+        })
+        .then(() => {
+          if (statusEl) statusEl.textContent = "Message sent successfully — I'll get back to you soon.";
+          form.reset();
+        })
+        .catch((err) => {
+          console.error(err);
+          if (statusEl) statusEl.textContent = "Could not send message. Please try again or email directly.";
+        })
+        .finally(() => {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalLabel || "Submit";
+          }
+        });
+    });
+  });
+})();

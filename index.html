@@ -387,9 +387,8 @@
           <p><a href="https://www.linkedin.com/in/maithreyan-d-93924a2a6">LinkedIn</a></p>
         </div>
       </div>
-      <!-- New contact form (UI-only). Does not submit to server — it's a UI placeholder to match requested design. -->
       <div class="contact-form-wrapper">
-        <form id="contact-form" class="contact-form" action="#" onsubmit="event.preventDefault(); alert('Form submitted (UI demo)');">
+        <form id="contact-form" class="contact-form" action="#">
           <div class="form-row">
             <label for="name">Name</label>
             <input id="name" name="name" type="text" placeholder="Your name" required />
@@ -410,6 +409,7 @@
             <button class="btn btn-color-1" type="submit">Submit</button>
           </div>
         </form>
+        <p id="contact-form-status" class="contact-form-status" role="status" aria-live="polite"></p>
       </div>
     </section>
     <footer>
@@ -473,6 +473,7 @@
       </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

@@ -41,6 +41,12 @@
   --overlay-bg: rgba(255,255,255,0.9);
   --overlay-link: #111;
   --particle-color: rgba(0,0,0,0.75);
+  /* word smoke / blast (subtitle) — dark mist on light bg */
+  --smoke-stop-a: rgba(0, 0, 0, 0.18);
+  --smoke-stop-b: rgba(0, 0, 0, 0.1);
+  --smoke-stop-c: rgba(0, 0, 0, 0.16);
+  --smoke-stop-d: rgba(0, 0, 0, 0.12);
+  --smoke-stop-e: rgba(0, 0, 0, 0.22);
 }
 
 /* Explicit dark theme override */
@@ -66,7 +72,13 @@
   /* overlay and particles (dark-friendly) */
   --overlay-bg: rgba(3,6,10,0.86);
   --overlay-link: #fff;
-  --particle-color: rgba(255,255,255,0.85);
+  --particle-color: rgba(255,255,255,0.88);
+  /* word smoke / blast — bright mist on dark bg (was too faint / read as “black”) */
+  --smoke-stop-a: rgba(255, 255, 255, 0.34);
+  --smoke-stop-b: rgba(255, 255, 255, 0.2);
+  --smoke-stop-c: rgba(255, 255, 255, 0.3);
+  --smoke-stop-d: rgba(255, 255, 255, 0.22);
+  --smoke-stop-e: rgba(255, 255, 255, 0.4);
 }
 
 /* Smooth theme transitions */
@@ -1371,6 +1383,12 @@ nav.logo-center .nav-links {
   position: relative;
   display: inline-block;
   overflow: visible;
+  isolation: isolate;
+}
+
+.section__text__p2 .word .word-text {
+  position: relative;
+  z-index: 1;
 }
 
 .section__text__p2 .word .smoke {
@@ -1381,12 +1399,13 @@ nav.logo-center .nav-links {
   width: calc(100% + 56px);
   height: calc(100% + 48px);
   pointer-events: none;
-  z-index: -1;
+  z-index: 0;
+  mix-blend-mode: normal;
   filter: blur(10px) saturate(80%);
   opacity: 0;
   background:
-    radial-gradient(closest-side at 30% 30%, rgba(0,0,0,0.18), transparent 45%),
-    radial-gradient(closest-side at 70% 70%, rgba(0,0,0,0.10), transparent 40%);
+    radial-gradient(closest-side at 30% 30%, var(--smoke-stop-a), transparent 45%),
+    radial-gradient(closest-side at 70% 70%, var(--smoke-stop-b), transparent 40%);
   will-change: transform, opacity, filter;
   animation: smokeRise 1800ms ease-in-out infinite;
   animation-play-state: paused; /* start paused; will run when word gets .animate */
@@ -1395,25 +1414,34 @@ nav.logo-center .nav-links {
 .section__text__p2 .word .smoke.smoke-alt {
   filter: blur(16px) contrast(90%);
   background:
-    radial-gradient(closest-side at 20% 20%, rgba(0,0,0,0.16), transparent 40%),
-    radial-gradient(closest-side at 80% 60%, rgba(0,0,0,0.12), transparent 36%);
+    radial-gradient(closest-side at 20% 20%, var(--smoke-stop-c), transparent 40%),
+    radial-gradient(closest-side at 80% 60%, var(--smoke-stop-d), transparent 36%);
   opacity: 0.9;
   animation: smokeDrift 2400ms ease-in-out infinite;
   animation-play-state: paused;
 }
 
-/* stronger, more dynamic burst used for 'Full Stack Developer' words */
+/* stronger burst: MERN Stack + Full Stack Developer phrases */
 .section__text__p2 .word.fullstack .smoke {
   filter: blur(14px) brightness(0.95);
   opacity: 0.95;
 }
+
+[data-theme="dark"] .section__text__p2 .word.fullstack .smoke {
+  filter: blur(14px) brightness(1.06) saturate(95%);
+}
+
 .section__text__p2 .word.fullstack .smoke.smoke-ghost {
   background:
-    radial-gradient(closest-side at 50% 20%, rgba(0,0,0,0.22), transparent 35%),
-    radial-gradient(closest-side at 30% 70%, rgba(0,0,0,0.12), transparent 40%);
+    radial-gradient(closest-side at 50% 20%, var(--smoke-stop-e), transparent 35%),
+    radial-gradient(closest-side at 30% 70%, var(--smoke-stop-d), transparent 40%);
   filter: blur(22px) saturate(70%);
   animation: smokeBurst 1600ms ease-in-out infinite;
   animation-play-state: paused;
+}
+
+[data-theme="dark"] .section__text__p2 .word.fullstack .smoke.smoke-ghost {
+  filter: blur(22px) saturate(85%) brightness(1.05);
 }
 
 /* When word has .animate, run the smoke animations */

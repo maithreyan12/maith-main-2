@@ -452,8 +452,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const particles = [];
   let lastTime = 0;
 
-  // read particle color from CSS variable so theme controls particle appearance
-  const cssParticleColor = (getComputedStyle(document.documentElement).getPropertyValue('--particle-color') || '').trim() || 'rgba(0,0,0,0.75)';
+  function getParticleColor() {
+    return (getComputedStyle(document.documentElement).getPropertyValue('--particle-color') || '').trim() || 'rgba(0,0,0,0.75)';
+  }
 
   function rand(min, max) { return Math.random() * (max - min) + min; }
 
@@ -472,7 +473,7 @@ document.addEventListener('DOMContentLoaded', () => {
       this.life = rand(420, 980); // ms
       this.age = 0;
       this.size = rand(2, 6) * (1 - this.z) + 1;
-      this.color = color || cssParticleColor;
+      this.color = color || getParticleColor();
     }
     step(dt) {
       this.age += dt;
@@ -499,7 +500,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function spawn(x, y, opts) {
-    const color = opts && opts.color ? opts.color : cssParticleColor;
+    const color = opts && opts.color ? opts.color : getParticleColor();
     const count = opts && opts.count ? opts.count : Math.round(rand(8, 18));
     for (let i = 0; i < count; i++) particles.push(new P(x, y, color));
   }
@@ -632,9 +633,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const spans = words.map((w, j) => {
       const span = document.createElement('span');
       span.className = 'word';
-      span.textContent = w;
-      // for the 'Full Stack Developer' phrase (index 2), mark fullstack
-      if (i === 2) span.classList.add('fullstack');
+      const label = document.createElement('span');
+      label.className = 'word-text';
+      label.textContent = w;
+      span.appendChild(label);
+      // Stronger burst for MERN + Full Stack phrases (not Content Creator)
+      const bigBurst = i === 0 || i === 2;
+      if (bigBurst) span.classList.add('fullstack');
       wrap.appendChild(span);
 
       // create smoky layers unless user prefers reduced motion
@@ -654,8 +659,7 @@ document.addEventListener('DOMContentLoaded', () => {
         smokeAlt.style.animationDuration = `${2100 + (j % 3) * 500}ms`;
         span.appendChild(smokeAlt);
 
-        // extra ghost burst for fullstack phrase words
-        if (i === 2) {
+        if (bigBurst) {
           const ghost = document.createElement('span');
           ghost.className = 'smoke smoke-ghost';
           ghost.style.animationDelay = `${j * 220 + 40}ms`;

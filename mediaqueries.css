@@ -58,9 +58,9 @@
 }
 
 @media screen and (max-width: 600px) {
-  #contact,
-  footer {
-    height: 40vh;
+  #contact {
+    height: fit-content;
+    min-height: 0;
   }
   #profile {
     height: 83vh;

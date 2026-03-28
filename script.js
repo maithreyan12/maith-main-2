@@ -1,3 +1,11 @@
+/** Footer line “Created by …” — change only this if your display name changes. */
+const PORTFOLIO_AUTHOR_DISPLAY = "Maithreyan D";
+
+(function applyFooterAuthor() {
+  const el = document.querySelector(".site-footer__credit");
+  if (el) el.textContent = `Created by ${PORTFOLIO_AUTHOR_DISPLAY}`;
+})();
+
 function toggleMenu() {
   const menu = document.querySelector(".menu-links");
   const icon = document.querySelector(".hamburger-icon");
@@ -471,7 +479,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const names = [
     'Maithreyan D',
     'Maithreyan - Dev',
-    'MR',
+    'MG',
   ];
 
   // Ensure starting value is in the list

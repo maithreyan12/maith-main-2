@@ -1,9 +1,73 @@
 /** Footer line “Created by …” — change only this if your display name changes. */
 const PORTFOLIO_AUTHOR_DISPLAY = "Maithreyan D";
 
+/** CV PDF in /assets — file must exist; change filename here if you replace the file. */
+const CV_PDF_ASSET = "Maithreyan-Resume.pdf";
+const CV_DOWNLOAD_FILENAME = "Maithreyan-Resume.pdf";
+
 (function applyFooterAuthor() {
   const el = document.querySelector(".site-footer__credit");
   if (el) el.textContent = `Created by ${PORTFOLIO_AUTHOR_DISPLAY}`;
+})();
+
+(function wireCvDownloadLinks() {
+  const relPath = `./assets/${CV_PDF_ASSET}`;
+
+  async function handleCvClick(e) {
+    e.preventDefault();
+    const absolute = new URL(relPath, window.location.href).href;
+
+    // Open tab synchronously (before await) so popup blockers allow the preview
+    const preview = window.open("about:blank", "_blank");
+
+    try {
+      const res = await fetch(absolute);
+      if (!res.ok) throw new Error(String(res.status));
+      const blob = await res.blob();
+      const blobUrl = URL.createObjectURL(blob);
+
+      if (preview && !preview.closed) {
+        preview.location.href = blobUrl;
+      }
+
+      const a = document.createElement("a");
+      a.href = blobUrl;
+      a.download = CV_DOWNLOAD_FILENAME;
+      a.style.display = "none";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 120000);
+    } catch (err) {
+      if (preview && !preview.closed) {
+        preview.close();
+      }
+      console.warn("CV fetch failed, using direct link:", err);
+      const fallback = document.createElement("a");
+      fallback.href = absolute;
+      fallback.download = CV_DOWNLOAD_FILENAME;
+      fallback.target = "_blank";
+      fallback.rel = "noopener noreferrer";
+      document.body.appendChild(fallback);
+      fallback.click();
+      fallback.remove();
+    }
+  }
+
+  function bind() {
+    document.querySelectorAll("a.cv-download").forEach((a) => {
+      a.setAttribute("href", relPath);
+      a.setAttribute("download", CV_DOWNLOAD_FILENAME);
+      a.addEventListener("click", handleCvClick);
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bind);
+  } else {
+    bind();
+  }
 })();
 
 function toggleMenu() {

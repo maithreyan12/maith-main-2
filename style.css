@@ -1118,6 +1118,12 @@ section + section {
   gap: 0.6rem;
   box-shadow: 0 8px 24px rgba(0,0,0,0.12), inset 0 -6px 12px rgba(255,255,255,0.02);
 }
+
+a.btn {
+  text-decoration: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
 .btn:hover {
   transform: translateY(-3px) scale(1.02);
   box-shadow: 0 14px 40px rgba(0,0,0,0.32);
@@ -1150,6 +1156,14 @@ section + section {
 
 .btn-color-2:hover {
   border: var(--border) 0.1rem solid;
+}
+
+.about-cv-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 .about-details-container {

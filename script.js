@@ -1224,13 +1224,18 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.textContent = "Sending…";
       }
 
+      const templateParams = {
+        name,
+        email,
+        phone,
+        message,
+        from_name: name,
+        from_email: email,
+        reply_to: email,
+      };
+
       emailjs
-        .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-          name,
-          email,
-          phone,
-          message,
-        })
+        .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
         .then(() => {
           if (statusEl) statusEl.textContent = "Message sent successfully — I'll get back to you soon.";
           form.reset();

@@ -155,8 +155,28 @@ body::after {
 /* ─── Selection ─── */
 ::selection { background: var(--text-primary); color: var(--bg); }
 
-#root { position: relative; z-index: 1; min-height: 100vh; }
+#root { position: relative; z-index: 1; min-height: 100vh; overflow-x: hidden; }
 
-/* ─── Mobile base touch improvements ─── */
-button, a { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
-img { max-width: 100%; }
+/* ─── Mobile base touch & 120Hz ProMotion performance ─── */
+button, a, input, textarea, select {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+img, video {
+  max-width: 100%;
+  -webkit-user-drag: none;
+}
+
+/* GPU Hardware Acceleration for Buttery 120Hz Scroll */
+@media (max-width: 768px) {
+  body::before {
+    animation: none;
+    transform: translateZ(0);
+  }
+  html, body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: none;
+  }
+}
+

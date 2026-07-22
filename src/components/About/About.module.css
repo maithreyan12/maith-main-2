@@ -229,10 +229,19 @@
     width: 100%;
     max-width: 440px;
     align-items: center;
+    justify-content: center;
+  }
+  .picWrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .aboutPic {
     width: clamp(200px, 60vw, 300px);
     height: clamp(240px, 70vw, 340px);
+    margin: 0 auto;
+    display: block;
   }
   .cards {
     width: 100%;
@@ -246,7 +255,8 @@
 /* ── Phone (480px) ── */
 @media (max-width: 480px) {
   .about { padding: 4rem 1rem 3rem; }
-  .aboutPic { width: clamp(180px, 70vw, 260px); height: clamp(220px, 84vw, 310px); }
+  .picWrap { width: 100%; display: flex; justify-content: center; align-items: center; }
+  .aboutPic { width: clamp(180px, 70vw, 260px); height: clamp(220px, 84vw, 310px); margin: 0 auto; display: block; }
   .cards { flex-direction: column; gap: 0.75rem; }
   .card { flex-direction: row; text-align: left; padding: 0.85rem 1.15rem; border-radius: 18px; gap: 0.85rem; }
   .cardIcon { width: 2rem; height: 2rem; flex-shrink: 0; }

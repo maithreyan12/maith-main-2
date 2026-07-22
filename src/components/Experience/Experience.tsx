@@ -1,14 +1,8 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { SKILL_CATEGORIES } from "../../data/portfolio";
+import { TECHNICAL_EXPERTISE_CARDS } from "../../data/portfolio";
 import { scrollToSection } from "../../hooks/useScrollSpy";
 import styles from "./Experience.module.css";
-
-const LEVEL_PERCENT: Record<string, number> = {
-  Basic: 35,
-  Intermediate: 65,
-  Experienced: 90,
-};
 
 export default function Experience() {
   const ref = useRef<HTMLElement>(null);
@@ -30,40 +24,41 @@ export default function Experience() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ delay: 0.1, duration: 0.5 }}
       >
-        Experience
+        Technical Expertise
       </motion.h2>
 
       <div className={styles.grid}>
-        {SKILL_CATEGORIES.map((cat, ci) => (
+        {TECHNICAL_EXPERTISE_CARDS.map((cat, ci) => (
           <motion.div
             key={cat.title}
             className={styles.card}
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.2 + ci * 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ delay: 0.1 + ci * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h3 className={styles.cardTitle}>{cat.title}</h3>
-            <ul className={styles.skillList}>
-              {cat.skills.map((skill, si) => (
-                <li key={skill.name} className={styles.skillItem}>
-                  <div className={styles.skillHeader}>
-                    <div className={styles.skillLeft}>
-                      <img src="/assets/checkmark.png" alt="" className={styles.checkIcon} />
-                      <span className={styles.skillName}>{skill.name}</span>
-                    </div>
-                    <span className={styles.skillLevel}>{skill.level}</span>
+            <div className={styles.cardHeader}>
+              <h3 className={styles.cardTitle}>{cat.title}</h3>
+              <span className={styles.countBadge}>{cat.skills.length}</span>
+            </div>
+            <div className={styles.skillGrid}>
+              {cat.skills.map((skill) => (
+                <div key={skill.name} className={styles.skillBox}>
+                  <div className={styles.skillLeft}>
+                    {skill.icon ? (
+                      <img src={skill.icon} alt={skill.name} className={styles.techIcon} />
+                    ) : (
+                      <span className={styles.bulletDot}>✦</span>
+                    )}
+                    <span className={styles.skillName}>{skill.name}</span>
                   </div>
-                  <div className={styles.progressBar}>
-                    <motion.div
-                      className={styles.progressFill}
-                      initial={{ width: 0 }}
-                      animate={inView ? { width: `${LEVEL_PERCENT[skill.level]}%` } : { width: 0 }}
-                      transition={{ delay: 0.4 + ci * 0.15 + si * 0.06, duration: 0.7, ease: "easeOut" }}
-                    />
-                  </div>
-                </li>
+                  {skill.level && (
+                    <span className={`${styles.skillBadge} ${styles[skill.level.toLowerCase()]}`}>
+                      {skill.level}
+                    </span>
+                  )}
+                </div>
               ))}
-            </ul>
+            </div>
           </motion.div>
         ))}
       </div>

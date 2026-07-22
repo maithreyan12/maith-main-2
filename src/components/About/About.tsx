@@ -41,17 +41,18 @@ export default function About() {
       </motion.h2>
 
       <div className={styles.container}>
-        <motion.div
-          className={styles.picWrap}
-          custom={2}
-          variants={fadeUp}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-        >
-          <img src={AUTHOR.aboutPic} alt="About Maithreyan" className={styles.aboutPic} />
-        </motion.div>
+        {/* Left Column: Photo + Experience & Education Cards directly below */}
+        <div className={styles.leftCol}>
+          <motion.div
+            className={styles.picWrap}
+            custom={2}
+            variants={fadeUp}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+          >
+            <img src={AUTHOR.aboutPic} alt="About Maithreyan" className={styles.aboutPic} />
+          </motion.div>
 
-        <div className={styles.details}>
           <div className={styles.cards}>
             {ABOUT_CARDS.map((card, i) => (
               <motion.div
@@ -76,17 +77,20 @@ export default function About() {
               </motion.div>
             ))}
           </div>
-
-          <motion.div
-            className={styles.bio}
-            custom={5}
-            variants={fadeUp}
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-          >
-            <p>{AUTHOR.bio}</p>
-          </motion.div>
         </div>
+
+        {/* Right Column: About Bio Text Box */}
+        <motion.div
+          className={styles.bio}
+          custom={5}
+          variants={fadeUp}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+        >
+          {AUTHOR.bio.split("\n\n").map((para, i) => (
+            <p key={i} className={styles.bioParagraph} dangerouslySetInnerHTML={{ __html: para }} />
+          ))}
+        </motion.div>
       </div>
 
       <motion.button

@@ -1,0 +1,405 @@
+.certificates {
+  padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 4vw, 3rem) clamp(3rem, 6vw, 5rem);
+  max-width: 1250px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin: 0 0 0.65rem;
+}
+
+.sectionTitle {
+  font-size: clamp(2.2rem, 6vw, 5rem);
+  font-weight: 900;
+  color: var(--text-primary);
+  margin: 0 0 clamp(2rem, 4vw, 3.5rem);
+  letter-spacing: clamp(-1.5px, -0.03em, -3px);
+  line-height: 1;
+}
+
+:root:not([data-theme="dark"]) .sectionTitle {
+  color: #0f172a;
+}
+
+/* ── TV Showcase Container ── */
+.tvShowcase {
+  position: relative;
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+/* ── TV Screen Outer Box ── */
+.tvScreen {
+  position: relative;
+  background: var(--glass-strong);
+  backdrop-filter: blur(48px) saturate(220%);
+  -webkit-backdrop-filter: blur(48px) saturate(220%);
+  border-radius: 32px;
+  border: 1px solid var(--glass-border);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+  min-height: 540px;
+}
+
+/* Top Liquid Accent Line */
+.tvScreen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background: linear-gradient(
+    90deg,
+    rgba(34, 211, 238, 0.85) 0%,
+    rgba(129, 140, 248, 0.85) 45%,
+    rgba(52, 211, 153, 0.85) 80%,
+    rgba(248, 250, 252, 0.6) 100%
+  );
+  z-index: 5;
+}
+
+.tvSlide {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* ── TV Top Bar ── */
+.tvTopBar {
+  padding: 1.1rem 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.awardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: #0284c7;
+}
+
+[data-theme="dark"] .awardHeader {
+  color: #38bdf8;
+}
+
+.issuerTag {
+  font-size: 0.88rem;
+  font-weight: 750;
+  color: var(--text-primary);
+}
+
+:root:not([data-theme="dark"]) .issuerTag {
+  color: #0f172a;
+}
+
+.dateTag {
+  font-size: 0.76rem;
+  font-weight: 750;
+  color: var(--text-tertiary);
+  background: var(--glass-strong);
+  padding: 0.2rem 0.75rem;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+}
+
+/* ── Full Certificate Image Frame ── */
+.tvImageFrame {
+  position: relative;
+  width: 100%;
+  height: clamp(320px, 48vw, 520px);
+  background: var(--surface);
+  padding: clamp(0.75rem, 2.5vw, 1.5rem);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imgLink {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-decoration: none;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28);
+}
+
+.tvCertImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: #ffffff;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.imgLink:hover .tvCertImage {
+  transform: scale(1.025);
+}
+
+.imageHoverOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 750;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.imgLink:hover .imageHoverOverlay {
+  opacity: 1;
+}
+
+/* ── Bottom Information Panel ── */
+.tvBottomInfo {
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  text-align: left;
+}
+
+.infoLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.certTitle {
+  font-size: clamp(1.2rem, 3vw, 1.55rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: -0.3px;
+  line-height: 1.3;
+}
+
+:root:not([data-theme="dark"]) .certTitle {
+  color: #0f172a;
+}
+
+.credRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.1rem;
+}
+
+.credLabel {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--text-tertiary);
+  letter-spacing: 1px;
+}
+
+.credCode {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #0284c7;
+  font-family: monospace;
+}
+
+[data-theme="dark"] .credCode {
+  color: #38bdf8;
+}
+
+.skillsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.35rem;
+}
+
+.skillChip {
+  font-size: 0.72rem;
+  font-weight: 650;
+  color: var(--text-secondary);
+  background: var(--glass-strong);
+  border: 1px solid var(--border);
+  padding: 0.2rem 0.65rem;
+  border-radius: 8px;
+}
+
+/* PDF Action Button */
+.infoRight {
+  flex-shrink: 0;
+}
+
+.pdfBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.8rem;
+  border-radius: 100px;
+  font-size: 0.92rem;
+  font-weight: 750;
+  color: var(--btn-fill-text);
+  background: var(--btn-fill);
+  text-decoration: none;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  white-space: nowrap;
+}
+
+.pdfBtn:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Navigation Arrows ── */
+.navBtn {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  background: rgba(15, 15, 22, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease, border-color 0.25s ease;
+}
+
+:root:not([data-theme="dark"]) .navBtn {
+  background: rgba(255, 255, 255, 0.88);
+  color: #0f172a;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+}
+
+.navBtn:hover {
+  transform: translateY(-50%) scale(1.12);
+  border-color: rgba(34, 211, 238, 0.5);
+}
+
+.prevBtn { left: -1.4rem; }
+.nextBtn { right: -1.4rem; }
+
+/* ── TV Selectors Bar ── */
+.tvSelectors {
+  display: flex;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-top: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.selectTab {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 1.1rem;
+  border-radius: 100px;
+  background: var(--glass-strong);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.84rem;
+  font-weight: 600;
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.selectTab:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 211, 238, 0.4);
+  color: var(--text-primary);
+}
+
+.activeTab {
+  background: var(--surface);
+  border-color: rgba(34, 211, 238, 0.65);
+  box-shadow: 0 4px 18px rgba(34, 211, 238, 0.2);
+  color: var(--text-primary);
+}
+
+.tabNum {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #38bdf8;
+}
+
+.tabTitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+
+.arrowBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: block;
+  margin: clamp(2rem, 4vw, 3.5rem) auto 0;
+}
+.arrowImg { width: 1.75rem; height: 1.75rem; opacity: 0.2; filter: var(--icon-filter, none); }
+
+/* ── Tablet (900px) ── */
+@media (max-width: 900px) {
+  .prevBtn { left: 0.35rem; width: 2.75rem; height: 2.75rem; }
+  .nextBtn { right: 0.35rem; width: 2.75rem; height: 2.75rem; }
+  .tvBottomInfo { padding: 1.25rem 1.5rem; }
+  .certTitle { font-size: 1.25rem; }
+}
+
+/* ── Mobile (640px) ── */
+@media (max-width: 640px) {
+  .certificates { padding: 4rem 1rem 3rem; }
+  .tvScreen { border-radius: 24px; min-height: auto; }
+  .tvTopBar { padding: 0.85rem 1rem; flex-wrap: wrap; gap: 0.5rem; }
+  .issuerTag { font-size: 0.8rem; }
+  .dateTag { font-size: 0.7rem; }
+  .tvImageFrame { height: clamp(210px, 55vw, 300px); padding: 0.5rem; }
+  .tvBottomInfo { flex-direction: column; text-align: center; gap: 1rem; padding: 1.2rem 1rem; }
+  .infoLeft { align-items: center; }
+  .credRow { flex-wrap: wrap; justify-content: center; }
+  .skillsRow { justify-content: center; }
+  .infoRight { width: 100%; }
+  .pdfBtn { width: 100%; justify-content: center; padding: 0.75rem 1.2rem; font-size: 0.88rem; }
+  .prevBtn { left: 0.35rem; width: 2.5rem; height: 2.5rem; }
+  .nextBtn { right: 0.35rem; width: 2.5rem; height: 2.5rem; }
+  .selectTab { padding: 0.35rem 0.75rem; }
+  .tabTitle { display: none; }
+}
+
+/* ── Small Mobile (420px) ── */
+@media (max-width: 420px) {
+  .sectionTitle { font-size: 2.1rem; }
+  .tvImageFrame { height: 210px; padding: 0.35rem; }
+  .certTitle { font-size: 1.1rem; }
+  .credCode { font-size: 0.76rem; word-break: break-all; }
+}

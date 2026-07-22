@@ -1,65 +1,258 @@
 .experience {
-  padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 5vw, 3rem) clamp(3rem, 6vw, 5rem);
-  max-width: 1200px;
+  padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 4vw, 3rem) clamp(3rem, 6vw, 5rem);
+  max-width: 1400px;
   margin: 0 auto;
   text-align: center;
 }
 
-.eyebrow { font-size: 0.72rem; font-weight: 800; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 4px; margin: 0 0 0.65rem; }
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin: 0 0 0.65rem;
+}
 
 .sectionTitle {
   font-size: clamp(2.2rem, 6vw, 5rem);
   font-weight: 900;
   color: var(--text-primary);
-  margin: 0 0 clamp(2rem, 5vw, 4rem);
+  margin: 0 0 clamp(2rem, 4vw, 3.5rem);
   letter-spacing: clamp(-1.5px, -0.03em, -3px);
   line-height: 1;
 }
 
+:root:not([data-theme="dark"]) .sectionTitle {
+  color: #0f172a;
+}
+
+/* ── Responsive Grid for Phone, Tablet, Laptop, Desktop ── */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
-  gap: clamp(0.9rem, 2vw, 1.5rem);
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1rem, 1.8vw, 1.35rem);
+  align-items: stretch;
 }
 
+/* ── Compact Glass Card Box ── */
 .card {
   background: var(--glass-strong);
-  backdrop-filter: blur(32px) saturate(200%);
-  -webkit-backdrop-filter: blur(32px) saturate(200%);
-  border: 0.5px solid var(--glass-border);
-  border-radius: clamp(18px, 4vw, 28px);
-  padding: clamp(1.5rem, 4vw, 2.25rem);
+  backdrop-filter: blur(40px) saturate(220%);
+  -webkit-backdrop-filter: blur(40px) saturate(220%);
+  border: 1px solid var(--glass-border);
+  border-radius: 22px;
+  padding: 1.15rem 1.1rem;
   text-align: left;
   box-shadow: var(--shadow-sm);
-  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
-.card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+
+/* Top Liquid Rim Accent Line */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background: linear-gradient(
+    90deg,
+    rgba(34, 211, 238, 0.85) 0%,
+    rgba(129, 140, 248, 0.85) 45%,
+    rgba(52, 211, 153, 0.85) 80%,
+    rgba(248, 250, 252, 0.6) 100%
+  );
+  z-index: 2;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md), 0 0 20px rgba(34, 211, 238, 0.12);
+  border-color: rgba(34, 211, 238, 0.4);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--border);
+}
 
 .cardTitle {
-  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 800;
   color: var(--text-primary);
-  margin: 0 0 clamp(1rem, 3vw, 1.75rem);
-  padding-bottom: 0.9rem;
-  border-bottom: 1px solid var(--border-strong);
-  letter-spacing: -0.3px;
+  margin: 0;
+  letter-spacing: -0.2px;
 }
 
-.skillList { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.1rem; }
-.skillItem { display: flex; flex-direction: column; gap: 0.45rem; }
-.skillHeader { display: flex; align-items: center; justify-content: space-between; }
-.skillLeft { display: flex; align-items: center; gap: 0.6rem; }
-.checkIcon { width: 1rem; height: 1rem; object-fit: contain; filter: var(--icon-filter, none); flex-shrink: 0; }
-.skillName { font-size: clamp(0.88rem, 2vw, 1rem); font-weight: 600; color: var(--text-primary); }
-.skillLevel { font-size: 0.72rem; font-weight: 600; color: var(--text-secondary); background: var(--glass-strong); backdrop-filter: blur(8px); border: 0.5px solid var(--border); padding: 0.18rem 0.6rem; border-radius: 100px; white-space: nowrap; }
-.progressBar { height: 3px; background: var(--border-strong); border-radius: 100px; overflow: hidden; }
-.progressFill { height: 100%; background: var(--text-primary); border-radius: 100px; will-change: width; }
+:root:not([data-theme="dark"]) .cardTitle {
+  color: #0f172a;
+}
 
-.arrowBtn { background: none; border: none; cursor: pointer; display: block; margin: clamp(2rem, 4vw, 3.5rem) auto 0; }
+.countBadge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #0284c7;
+  background: rgba(2, 132, 199, 0.1);
+  padding: 0.15rem 0.5rem;
+  border-radius: 100px;
+  border: 1px solid rgba(2, 132, 199, 0.25);
+}
+
+[data-theme="dark"] .countBadge {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  border-color: rgba(56, 189, 248, 0.25);
+}
+
+/* ── Compact Micro-Box Grid inside each Card ── */
+.skillGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  flex: 1;
+}
+
+/* ── Individual Compact Micro-Box ── */
+.skillBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  padding: 0.4rem 0.65rem;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.skillBox:hover {
+  transform: translateX(3px);
+  background: var(--card-bg);
+  border-color: rgba(34, 211, 238, 0.35);
+}
+
+:root:not([data-theme="dark"]) .skillBox {
+  background: rgba(255, 255, 255, 0.65);
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+:root:not([data-theme="dark"]) .skillBox:hover {
+  background: #ffffff;
+  border-color: rgba(2, 132, 199, 0.35);
+}
+
+.skillLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.techIcon {
+  width: 1.15rem;
+  height: 1.15rem;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.bulletDot {
+  font-size: 0.65rem;
+  color: #34d399;
+  flex-shrink: 0;
+}
+
+.skillName {
+  font-size: 0.82rem;
+  font-weight: 650;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+:root:not([data-theme="dark"]) .skillName {
+  color: #0f172a;
+}
+
+/* ── Skill Level Pill Badges ── */
+.skillBadge {
+  font-size: 0.62rem;
+  font-weight: 750;
+  padding: 0.15rem 0.5rem;
+  border-radius: 100px;
+  white-space: nowrap;
+  letter-spacing: 0.2px;
+  flex-shrink: 0;
+}
+
+.advanced {
+  background: rgba(2, 132, 199, 0.1);
+  color: #0284c7;
+  border: 0.5px solid rgba(2, 132, 199, 0.25);
+}
+
+[data-theme="dark"] .advanced {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+.intermediate {
+  background: rgba(124, 58, 237, 0.1);
+  color: #7c3aed;
+  border: 0.5px solid rgba(124, 58, 237, 0.25);
+}
+
+[data-theme="dark"] .intermediate {
+  color: #a5b4fc;
+  background: rgba(165, 180, 252, 0.15);
+  border-color: rgba(165, 180, 252, 0.35);
+}
+
+.beginner {
+  background: rgba(5, 150, 105, 0.1);
+  color: #059669;
+  border: 0.5px solid rgba(5, 150, 105, 0.25);
+}
+
+[data-theme="dark"] .beginner {
+  color: #6ee7b7;
+  background: rgba(110, 231, 183, 0.15);
+  border-color: rgba(110, 231, 183, 0.35);
+}
+
+.arrowBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: block;
+  margin: clamp(2rem, 4vw, 3.5rem) auto 0;
+}
 .arrowImg { width: 1.75rem; height: 1.75rem; opacity: 0.2; filter: var(--icon-filter, none); }
 
-@media (max-width: 480px) {
+/* ── Laptop / Small Desktop (1200px) ── */
+@media (max-width: 1200px) {
+  .grid { grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
+}
+
+/* ── Tablet (850px) ── */
+@media (max-width: 850px) {
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+}
+
+/* ── Mobile (580px) ── */
+@media (max-width: 580px) {
   .experience { padding: 4rem 1rem 3rem; }
-  .grid { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: 1fr; gap: 0.95rem; }
   .sectionTitle { font-size: 2.2rem; }
+  .card { padding: 1.1rem 1rem; border-radius: 20px; }
 }

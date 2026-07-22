@@ -37,17 +37,25 @@
   align-items: center;
   gap: 0.7rem;
   text-decoration: none;
-  padding: 0.85rem 1.5rem;
+  padding: 0.85rem 1.6rem;
   border-radius: 100px;
   background: var(--glass-strong);
-  backdrop-filter: blur(28px) saturate(200%);
-  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  backdrop-filter: blur(32px) saturate(210%);
+  -webkit-backdrop-filter: blur(32px) saturate(210%);
   border: 1px solid var(--glass-border);
   box-shadow: var(--shadow-sm);
   color: var(--text-primary);
   font-size: 0.95rem;
   font-weight: 600;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
 }
+
+.infoCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(34, 211, 238, 0.4);
+}
+
 .infoIcon {
   width: 1.35rem;
   height: 1.35rem;
@@ -58,37 +66,33 @@
 /* ── Form Card ── */
 .formWrapper {
   background: var(--glass-strong);
-  backdrop-filter: blur(40px) saturate(220%);
-  -webkit-backdrop-filter: blur(40px) saturate(220%);
+  backdrop-filter: blur(52px) saturate(220%);
+  -webkit-backdrop-filter: blur(52px) saturate(220%);
   border: 1px solid var(--glass-border);
   border-radius: 32px;
   padding: 0;
   box-shadow: var(--shadow-lg);
   text-align: left;
   overflow: hidden;
+  position: relative;
 }
 
-/* Brand header bar */
-.formBrand {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  padding: 1.1rem 2.5rem;
-  border-bottom: 1px solid var(--border);
-  background: var(--surface);
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--text-tertiary);
-  letter-spacing: -0.1px;
-}
-
-.formBrandDot {
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 50%;
-  background: var(--text-primary);
-  flex-shrink: 0;
-  opacity: 0.7;
+/* Top Liquid Rim Glow Accent */
+.formWrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background: linear-gradient(
+    90deg,
+    rgba(34, 211, 238, 0.7) 0%,
+    rgba(129, 140, 248, 0.7) 40%,
+    rgba(52, 211, 153, 0.7) 70%,
+    rgba(248, 250, 252, 0.5) 100%
+  );
+  z-index: 2;
 }
 
 /* ── Form ── */
@@ -130,10 +134,10 @@
   width: 100%;
   padding: 0.9rem 1.15rem;
   border: 1.5px solid var(--border);
-  border-radius: 14px;
+  border-radius: 16px;
   background: var(--input-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   color: var(--text-primary);
   font-size: 0.97rem;
   font-family: inherit;
@@ -143,14 +147,17 @@
   resize: vertical;
   letter-spacing: -0.1px;
 }
+
 .formRow input::placeholder,
 .formRow textarea::placeholder { color: var(--text-tertiary); }
+
 .formRow input:focus,
 .formRow textarea:focus {
-  border-color: var(--text-primary);
-  box-shadow: 0 0 0 3.5px rgba(0,0,0,0.07);
+  border-color: rgba(34, 211, 238, 0.7);
+  box-shadow: 0 0 0 3.5px rgba(34, 211, 238, 0.22);
   background: var(--card-bg);
 }
+
 [data-theme="dark"] .formRow input:focus,
 [data-theme="dark"] .formRow textarea:focus {
   box-shadow: 0 0 0 3.5px rgba(255,255,255,0.08);

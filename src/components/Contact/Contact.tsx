@@ -50,10 +50,12 @@ export default function Contact() {
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     setStatus("sending");
     try {
-      // FormSubmit.co — no API key, works with just your email!
-      // First submission: you'll get an activation email from FormSubmit.
-      // Click "Activate Form" in that email, then all future submissions
-      // go straight to maithreyan2006@gmail.com
+      const firstLetter = (data.name.trim().charAt(0) || "U").toUpperCase();
+      const submittedTime = new Date().toLocaleString("en-US", {
+        dateStyle: "full",
+        timeStyle: "short",
+      });
+
       const response = await fetch(
         `https://formsubmit.co/ajax/${AUTHOR.email}`,
         {
@@ -63,14 +65,19 @@ export default function Contact() {
             Accept: "application/json",
           },
           body: JSON.stringify({
-            name: data.name,
-            email: data.email,
-            phone: data.phone ?? "Not provided",
-            message: data.message,
-            _subject: `📬 New Message from ${data.name} — Maithreyan Portfolio`,
-            _replyto: data.email,
+            _subject: `⚡ New Portfolio Contact from ${data.name}`,
+            _template: "box",
             _captcha: "false",
-            _template: "table",
+            _replyto: data.email,
+            "1. Sender Avatar": `[ ${firstLetter} ] ${data.name}`,
+            "2. Full Name": data.name,
+            "3. Email Address": data.email,
+            "4. Phone Number": data.phone?.trim() ? data.phone : "Not provided",
+            "5. Subject": `Portfolio Inquiry from ${data.name}`,
+            "6. Submitted Time": submittedTime,
+            "7. Message Content": data.message,
+            "8. Reply Action": `mailto:${data.email}?subject=Re:%20Portfolio%20Inquiry`,
+            "9. Sent From": "Maithreyan D Portfolio Website (https://github.com/maithreyan12)",
           }),
         }
       );

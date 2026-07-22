@@ -1,14 +1,8 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { PROJECTS } from "../../data/portfolio";
 import { scrollToSection } from "../../hooks/useScrollSpy";
 import styles from "./Projects.module.css";
-
-const GitHubIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={styles.btnIcon}>
-    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/>
-  </svg>
-);
 
 const ExternalIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={styles.btnIcon}>
@@ -16,9 +10,26 @@ const ExternalIcon = () => (
   </svg>
 );
 
+const SwipeUpHandIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.swipeIcon}>
+    <path d="M12 19V5M5 12l7-7 7 7"/>
+  </svg>
+);
+
 export default function Projects() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [exitDirection, setExitDirection] = useState<number | null>(null);
+
+  const handleNext = () => {
+    setExitDirection(-350);
+    setTimeout(() => {
+      setActiveIndex((prev) => (prev + 1) % PROJECTS.length);
+      setExitDirection(null);
+    }, 220);
+  };
 
   return (
     <section id="projects" ref={ref} className={styles.projects}>
@@ -28,7 +39,7 @@ export default function Projects() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5 }}
       >
-        Browse My Recent
+        Interactive Paper Deck
       </motion.p>
       <motion.h2
         className={styles.sectionTitle}
@@ -39,43 +50,132 @@ export default function Projects() {
         Projects
       </motion.h2>
 
-      <div className={styles.grid}>
-        {PROJECTS.map((project, i) => (
-          <motion.div
-            key={project.title}
-            className={styles.card}
-            initial={{ opacity: 0, y: 60 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.2 + i * 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            whileHover={{ y: -8 }}
-          >
-            <div className={styles.imgWrapper}>
-              <img src={project.image} alt={project.title} className={styles.projectImg} />
-              <div className={styles.imgOverlay} />
-            </div>
-            <div className={styles.cardBody}>
-              <h3 className={styles.projectTitle}>{project.title}</h3>
-              <div className={styles.btnRow}>
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${styles.btn} ${styles.btnOutline}`}
-                >
-                  <GitHubIcon /> GitHub
-                </a>
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${styles.btn} ${styles.btnFilled}`}
-                >
-                  <ExternalIcon /> Live Demo
-                </a>
-              </div>
-            </div>
-          </motion.div>
-        ))}
+      {/* ── Modern Paper Card Deck Showcase ── */}
+      <div className={styles.deckWrapper}>
+        <p className={styles.swipeHint}>
+          <SwipeUpHandIcon /> Click image or swipe up for next project paper
+        </p>
+
+        <div className={styles.cardDeck}>
+          {PROJECTS.map((project, i) => {
+            const position = (i - activeIndex + PROJECTS.length) % PROJECTS.length;
+            const isTop = position === 0;
+
+            // Side-corner tilted paper offsets
+            let rotate = 0;
+            let xOffset = 0;
+            let yOffset = 0;
+            let scale = 1;
+            let opacity = 1;
+
+            if (position === 0) {
+              rotate = 0;
+              xOffset = 0;
+              yOffset = 0;
+              scale = 1;
+              opacity = 1;
+            } else if (position === 1) {
+              rotate = 4.2; // Tilted right corner paper
+              xOffset = 22;
+              yOffset = 20;
+              scale = 0.94;
+              opacity = 0.84;
+            } else {
+              rotate = -4.2; // Tilted left corner paper
+              xOffset = -22;
+              yOffset = 38;
+              scale = 0.88;
+              opacity = 0.65;
+            }
+
+            const zIndex = PROJECTS.length - position;
+
+            return (
+              <motion.div
+                key={project.title}
+                className={`${styles.deckCard} ${isTop ? styles.topCard : styles.peekingCard}`}
+                style={{ zIndex }}
+                initial={false}
+                animate={
+                  isTop && exitDirection !== null
+                    ? { y: exitDirection, rotate: -8, opacity: 0, scale: 1.04 }
+                    : {
+                        y: yOffset,
+                        x: xOffset,
+                        rotate: rotate,
+                        scale: scale,
+                        opacity: opacity,
+                      }
+                }
+                transition={{
+                  duration: 0.45,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                drag={isTop ? "y" : false}
+                dragConstraints={{ top: 0, bottom: 0 }}
+                dragElastic={0.4}
+                onDragEnd={(_, info) => {
+                  if (isTop && (info.offset.y < -50 || info.velocity.y < -200)) {
+                    handleNext();
+                  }
+                }}
+                onClick={() => {
+                  if (isTop) {
+                    handleNext();
+                  } else {
+                    setActiveIndex(i);
+                  }
+                }}
+              >
+                {/* Image Container */}
+                <div className={styles.imgWrapper}>
+                  <img src={project.image} alt={project.title} className={styles.projectImg} />
+                  <div className={styles.imgOverlay} />
+                  
+                  {/* Side Corner Paper Tag */}
+                  <span className={styles.paperTag}>
+                    PROJECT 0{i + 1}
+                  </span>
+
+                  {/* Swipe Up Hint Badge on Top Card */}
+                  {isTop && (
+                    <div className={styles.swipeBadge}>
+                      <SwipeUpHandIcon /> Click / Swipe Up
+                    </div>
+                  )}
+                </div>
+
+                {/* Card Footer */}
+                <div className={styles.cardFooter}>
+                  <h3 className={styles.projectTitle}>{project.title}</h3>
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.liveBtn}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <ExternalIcon /> Live Demo
+                  </a>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Paper Tabs Navigation */}
+        <div className={styles.paperTabsRow}>
+          {PROJECTS.map((proj, idx) => (
+            <button
+              key={proj.title}
+              className={`${styles.paperTab} ${idx === activeIndex ? styles.activePaperTab : ""}`}
+              onClick={() => setActiveIndex(idx)}
+            >
+              <span className={styles.tabNum}>0{idx + 1}</span>
+              <span className={styles.tabName}>{proj.title}</span>
+            </button>
+          ))}
+        </div>
       </div>
 
       <motion.button

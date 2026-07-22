@@ -1,37 +1,32 @@
-# Maithreyan Portfolio
+# React + TypeScript + Vite
 
-A modern, responsive portfolio website with an AI-powered chatbot.
+This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
-## Features
+Currently, two official plugins are available:
 
-- 🎨 Modern, responsive design with dark/light theme
-- 🤖 AI Chatbot with ChatGPT/Gemini integration
-- 📱 Mobile-friendly interface
-- ⚡ Smooth animations and transitions
-- 🎯 Interactive navigation
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## AI Chatbot
+## React Compiler
 
-The portfolio includes an AI chatbot that can answer questions about:
-- Contact information
-- Skills and technologies
-- Experience and education
-- Projects and portfolio
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-### Setup Instructions
+## Expanding the Oxlint configuration
 
-See [CHATBOT_SETUP.md](./CHATBOT_SETUP.md) for detailed instructions on configuring ChatGPT or Gemini API.
+If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
 
-## Quick Start
+```json
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "typescript", "oxc"],
+  "options": {
+    "typeAware": true
+  },
+  "rules": {
+    "react/rules-of-hooks": "error",
+    "react/only-export-components": ["warn", { "allowConstantExport": true }]
+  }
+}
+```
 
-1. Open `index.html` in a browser
-2. Configure AI chatbot (optional) - see CHATBOT_SETUP.md
-3. Customize content in `index.html` and `script.js`
-
-## Files
-
-- `index.html` - Main HTML structure
-- `style.css` - Styling and themes
-- `script.js` - JavaScript functionality and chatbot
-- `mediaqueries.css` - Responsive design
-- `CHATBOT_SETUP.md` - AI chatbot configuration guide
+See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.

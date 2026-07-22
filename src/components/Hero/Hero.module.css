@@ -1,0 +1,176 @@
+.hero {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(2rem, 6vw, 7rem);
+  padding: clamp(5.5rem, 10vw, 9rem) clamp(1rem, 5vw, 3rem) clamp(3rem, 6vw, 5rem);
+  position: relative;
+}
+
+.picContainer {
+  flex-shrink: 0;
+  perspective: 1200px;
+}
+
+.profilePic {
+  width: clamp(200px, 30vw, 400px);
+  height: clamp(200px, 30vw, 400px);
+  border-radius: 50%;
+  object-fit: cover;
+  border: 0.5px solid var(--glass-border);
+  box-shadow:
+    0 0 0 8px rgba(255,255,255,0.18),
+    var(--shadow-lg);
+  will-change: transform;
+  user-select: none;
+  display: block;
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  min-width: 0;
+}
+
+.greeting {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.name {
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  font-weight: 900;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 0.95;
+  letter-spacing: clamp(-2px, -0.04em, -3.5px);
+}
+
+.title {
+  font-size: clamp(0.88rem, 2vw, 1.3rem);
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin: 0;
+  letter-spacing: -0.2px;
+  line-height: 1.4;
+}
+
+.btnContainer {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: clamp(0.7rem, 2vw, 0.9rem) clamp(1.3rem, 4vw, 2.2rem);
+  border-radius: 100px;
+  font-size: clamp(0.85rem, 2vw, 0.98rem);
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: -0.2px;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+  white-space: nowrap;
+}
+
+.btnOutline {
+  background: var(--glass-strong);
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+  border: 0.5px solid var(--glass-border);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+}
+.btnOutline:hover { box-shadow: var(--shadow-md); }
+
+.btnFilled {
+  background: var(--btn-fill);
+  color: var(--btn-fill-text);
+  border: 0.5px solid transparent;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+.btnFilled:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.28); }
+
+.socials {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.15rem;
+  flex-wrap: wrap;
+}
+
+.socialIcon {
+  width: clamp(2.3rem, 5vw, 2.75rem);
+  height: clamp(2.3rem, 5vw, 2.75rem);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--glass-strong);
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+  border: 0.5px solid var(--glass-border);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.socialIcon img {
+  width: 1.1rem;
+  height: 1.1rem;
+  object-fit: contain;
+  filter: var(--icon-filter, none);
+}
+
+.arrowDown {
+  position: absolute;
+  bottom: clamp(1rem, 3vw, 2.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+.arrowImg {
+  width: 1.75rem;
+  height: 1.75rem;
+  opacity: 0.2;
+  filter: var(--icon-filter, none);
+}
+
+/* ── Tablet ── */
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+  .profilePic { width: clamp(170px, 52vw, 280px); height: clamp(170px, 52vw, 280px); }
+  .textContent { align-items: center; max-width: 100%; }
+  .btnContainer { justify-content: center; }
+  .socials { justify-content: center; }
+}
+
+/* ── Mobile (480px) ── */
+@media (max-width: 480px) {
+  .hero { gap: 1.5rem; padding-top: 5rem; padding-bottom: 3rem; }
+  .profilePic { width: clamp(150px, 55vw, 220px); height: clamp(150px, 55vw, 220px); }
+  .name { font-size: clamp(2.4rem, 11vw, 3.5rem); letter-spacing: -1.5px; }
+  .title { font-size: 0.9rem; }
+  .btnContainer { gap: 0.6rem; }
+  .btn { padding: 0.7rem 1.4rem; font-size: 0.88rem; }
+}
+
+/* ── Small phones (360px or less) ── */
+@media (max-width: 360px) {
+  .name { font-size: 2.2rem; }
+  .btnContainer { flex-direction: column; align-items: stretch; }
+  .btn { text-align: center; }
+}

@@ -86,7 +86,7 @@
   flex-direction: column;
   cursor: grab;
   transform-origin: bottom center;
-  touch-action: none;
+  touch-action: pan-y;
   user-select: none;
 }
 

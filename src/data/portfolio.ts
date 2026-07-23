@@ -70,6 +70,16 @@ export const CERTIFICATES: Certificate[] = [
     image: "/assets/cert-wa0007.png",
     verifyUrl: "/assets/Maithreyan-Certificate.pdf",
   },
+  {
+    id: "cert-guvi-2025",
+    title: "UI/UX Design Career Workshop Certificate",
+    issuer: "GUVI | HCL (GUVI Geek Networks)",
+    date: "13 November 2025",
+    credentialId: "Cert ID: 0iI6R37E9785g1Gn0Z",
+    skills: ["UI/UX Design", "User Experience", "Product Design", "GUVI & HCL"],
+    image: "/assets/cert-guvi.png",
+    verifyUrl: "https://www.guvi.in/verify-certificate?id=0iI6R37E9785g1Gn0Z",
+  },
 ];
 
 export interface TechSkill {
@@ -239,7 +249,7 @@ export const PROJECTS: Project[] = [
     title: "Mugundhan Textile App",
     image: "/assets/project-3.png",
     githubUrl: "https://github.com/maithreyan12",
-    liveUrl: "https://play.google.com/store/apps",
+    liveUrl: "https://mukundhantextile-c2ed0.firebaseapp.com/#/login",
   },
 ];
 

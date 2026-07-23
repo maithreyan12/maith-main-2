@@ -143,14 +143,24 @@
   box-shadow: 0 6px 20px rgba(34, 211, 238, 0.2);
 }
 
-.socials img,
-.socials svg {
+.socials img {
   width: 1.1rem;
   height: 1.1rem;
   object-fit: contain;
   filter: var(--icon-filter, none);
+}
+
+.socials svg {
+  width: 1.1rem;
+  height: 1.1rem;
   color: var(--text-primary);
   stroke: var(--text-primary);
+  filter: none !important;
+}
+
+[data-theme="dark"] .socials svg {
+  color: #f5f5f7;
+  stroke: #f5f5f7;
 }
 
 :root:not([data-theme="dark"]) .socials svg {

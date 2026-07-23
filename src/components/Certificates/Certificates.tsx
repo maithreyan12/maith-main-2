@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { CERTIFICATES } from "../../data/portfolio";
 import { scrollToSection } from "../../hooks/useScrollSpy";
@@ -63,6 +63,17 @@ export default function Certificates() {
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-slide slideshow every 4.5 seconds
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setDirection(1);
+      setActiveIndex((prev) => (prev === CERTIFICATES.length - 1 ? 0 : prev + 1));
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [isPaused]);
 
   const prevSlide = () => {
     setDirection(-1);
@@ -98,6 +109,10 @@ export default function Certificates() {
       {/* ── TV Screen Cinema Showcase ── */}
       <motion.div
         className={styles.tvShowcase}
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onTouchStart={() => setIsPaused(true)}
+        onTouchEnd={() => setIsPaused(false)}
         initial={{ opacity: 0, y: 40 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ delay: 0.2, duration: 0.6 }}

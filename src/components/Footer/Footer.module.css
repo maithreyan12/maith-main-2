@@ -1,9 +1,27 @@
 .footer {
   border-top: 1px solid var(--border);
-  padding: 2.5rem 3rem;
-  background: var(--glass);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  padding: 2.25rem 2.5rem;
+  background: var(--glass-strong);
+  backdrop-filter: blur(28px) saturate(200%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  position: relative;
+}
+
+/* Top Glow Line */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(34, 211, 238, 0.4) 30%,
+    rgba(129, 140, 248, 0.4) 70%,
+    transparent 100%
+  );
 }
 
 .inner {
@@ -13,45 +31,137 @@
   max-width: 1200px;
   margin: 0 auto;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
-.credit {
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  text-align: left;
+}
+
+.copyright {
   margin: 0;
-  font-size: 0.9rem;
-  color: var(--text-tertiary);
+  font-size: 0.88rem;
   font-weight: 500;
+  color: var(--text-secondary);
 }
 
+:root:not([data-theme="dark"]) .copyright {
+  color: #334155;
+}
+
+.copyright strong {
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+:root:not([data-theme="dark"]) .copyright strong {
+  color: #0f172a;
+}
+
+/* ── Appziio Startup Link Pill ── */
+.startupTag {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+:root:not([data-theme="dark"]) .startupTag {
+  color: #64748b;
+}
+
+.startupLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 800;
+  color: #0284c7;
+  background: rgba(2, 132, 199, 0.08);
+  border: 1px solid rgba(2, 132, 199, 0.22);
+  padding: 0.15rem 0.65rem;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+[data-theme="dark"] .startupLink {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.startupLink:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: rgba(2, 132, 199, 0.16);
+  border-color: rgba(2, 132, 199, 0.45);
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.2);
+}
+
+[data-theme="dark"] .startupLink:hover {
+  background: rgba(56, 189, 248, 0.22);
+  border-color: rgba(56, 189, 248, 0.55);
+  box-shadow: 0 4px 18px rgba(56, 189, 248, 0.25);
+}
+
+/* ── Socials ── */
 .socials {
   display: flex;
-  gap: 0.65rem;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .socials a {
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2.4rem;
+  height: 2.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: var(--glass);
-  backdrop-filter: blur(12px);
+  background: var(--surface);
+  backdrop-filter: blur(16px);
   border: 1px solid var(--border);
-  transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s;
-}
-.socials a:hover {
-  transform: translateY(-2px) scale(1.1);
-  box-shadow: var(--shadow-sm);
-}
-.socials img {
-  width: 1rem;
-  height: 1rem;
-  object-fit: contain;
-  filter: var(--icon-filter, none);
+  color: var(--text-primary);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-@media (max-width: 500px) {
-  .inner { justify-content: center; }
-  .footer { padding: 2rem 1.5rem; }
+:root:not([data-theme="dark"]) .socials a {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  color: #0f172a;
+}
+
+.socials a:hover {
+  transform: translateY(-3px) scale(1.1);
+  border-color: rgba(34, 211, 238, 0.5);
+  box-shadow: 0 6px 20px rgba(34, 211, 238, 0.2);
+}
+
+.socials img,
+.socials svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  object-fit: contain;
+  filter: var(--icon-filter, none);
+  color: var(--text-primary);
+  stroke: var(--text-primary);
+}
+
+:root:not([data-theme="dark"]) .socials svg {
+  color: #0f172a;
+  stroke: #0f172a;
+}
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+  .footer { padding: 2rem 1.25rem; }
+  .inner { flex-direction: column; text-align: center; gap: 1rem; }
+  .brandCol { align-items: center; text-align: center; }
+  .socials { justify-content: center; }
 }

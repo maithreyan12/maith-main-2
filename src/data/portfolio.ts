@@ -13,6 +13,8 @@ As the founder of <strong>Appziio</strong>, he helps startups and businesses tra
   email: "maithreyan2006@gmail.com",
   linkedin: "https://www.linkedin.com/in/maithreyan-d-680261412/",
   github: "https://github.com/maithreyan12",
+  instagram: "https://www.instagram.com/maithreyan__12?igsh=MTl1NW1xaHJlaGo5bw==",
+  appziio: "https://www.appziio.com",
   cvAsset: "/assets/Maithreyan-Resume.pdf",
   cvDownloadName: "Maithreyan-Resume.pdf",
   profilePic: "/assets/profile-pic.png",

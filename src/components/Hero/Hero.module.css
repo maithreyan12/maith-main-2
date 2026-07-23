@@ -276,12 +276,16 @@
   box-shadow: var(--shadow-sm);
   overflow: hidden;
   flex-shrink: 0;
+  color: var(--text-primary);
 }
-.socialIcon img {
+.socialIcon img,
+.socialIcon svg {
   width: 1.1rem;
   height: 1.1rem;
   object-fit: contain;
   filter: var(--icon-filter, none);
+  color: var(--text-primary);
+  stroke: var(--text-primary);
 }
 
 .arrowDown {

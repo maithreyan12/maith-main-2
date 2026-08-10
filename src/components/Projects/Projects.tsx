@@ -135,7 +135,7 @@ export default function Projects() {
               >
                 {/* Image Container */}
                 <div className={styles.imgWrapper}>
-                  <img src={project.image} alt={project.title} className={styles.projectImg} />
+                  <img src={project.image} alt={project.title} className={styles.projectImg} loading="lazy" decoding="async" />
                   <div className={styles.imgOverlay} />
                   
                   {/* Top Badge for Play Store App */}

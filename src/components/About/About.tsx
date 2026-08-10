@@ -50,7 +50,7 @@ export default function About() {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
           >
-            <img src={AUTHOR.aboutPic} alt="About Maithreyan" className={styles.aboutPic} />
+            <img src={AUTHOR.aboutPic} alt="About Maithreyan" className={styles.aboutPic} loading="lazy" decoding="async" />
           </motion.div>
 
           <div className={styles.cards}>
@@ -64,7 +64,7 @@ export default function About() {
                 animate={inView ? "visible" : "hidden"}
                 whileHover={{ y: -4, boxShadow: "0 12px 32px rgba(108,99,255,0.15)" }}
               >
-                <img src={card.icon} alt={card.iconAlt} className={styles.cardIcon} />
+                <img src={card.icon} alt={card.iconAlt} className={styles.cardIcon} loading="lazy" decoding="async" />
                 <h3 className={styles.cardTitle}>{card.heading}</h3>
                 <p className={styles.cardText}>
                   {card.description.split("\n").map((line, idx) => (

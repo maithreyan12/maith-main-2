@@ -161,22 +161,34 @@ body::after {
 button, a, input, textarea, select {
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+  user-select: none;
 }
 
 img, video {
   max-width: 100%;
   -webkit-user-drag: none;
+  decoding: async;
+  content-visibility: auto;
 }
 
-/* GPU Hardware Acceleration for Buttery 120Hz Scroll */
+/* GPU Hardware Acceleration for Buttery 120Hz Smooth Experience */
+body::before {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+html, body {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  touch-action: pan-y;
+  text-rendering: optimizeLegibility;
+}
+
 @media (max-width: 768px) {
   body::before {
     animation: none;
     transform: translateZ(0);
-  }
-  html, body {
-    -webkit-overflow-scrolling: touch;
-    touch-action: pan-y;
   }
 }
 

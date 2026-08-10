@@ -45,7 +45,7 @@ export default function Experience() {
                 <div key={skill.name} className={styles.skillBox}>
                   <div className={styles.skillLeft}>
                     {skill.icon ? (
-                      <img src={skill.icon} alt={skill.name} className={styles.techIcon} />
+                      <img src={skill.icon} alt={skill.name} className={styles.techIcon} loading="lazy" decoding="async" />
                     ) : (
                       <span className={styles.bulletDot}>✦</span>
                     )}

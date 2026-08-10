@@ -65,6 +65,7 @@ export default function Skills() {
                 alt={skill.name}
                 className={styles.icon}
                 loading="lazy"
+                decoding="async"
                 onError={(e) => {
                   (e.currentTarget as HTMLImageElement).style.opacity = "0.3";
                 }}

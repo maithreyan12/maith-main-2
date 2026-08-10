@@ -170,6 +170,8 @@ export default function Certificates() {
                     src={currentCert.image}
                     alt={currentCert.title}
                     className={styles.tvCertImage}
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className={styles.imageHoverOverlay}>
                     <PdfIcon /> View Official PDF Document

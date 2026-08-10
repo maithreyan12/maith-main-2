@@ -130,7 +130,7 @@ export default function Contact() {
           whileTap={{ scale: 0.97 }}
           transition={{ type: "spring", stiffness: 380, damping: 22 }}
         >
-          <img src="/assets/email.png" alt="Email" className={styles.infoIcon} />
+          <img src="/assets/email.png" alt="Email" className={styles.infoIcon} loading="lazy" decoding="async" />
           <span>{AUTHOR.email}</span>
         </motion.a>
         <motion.a
@@ -142,7 +142,7 @@ export default function Contact() {
           whileTap={{ scale: 0.97 }}
           transition={{ type: "spring", stiffness: 380, damping: 22 }}
         >
-          <img src="/assets/linkedin.png" alt="Maithreyan D LinkedIn" className={styles.infoIcon} />
+          <img src="/assets/linkedin.png" alt="Maithreyan D LinkedIn" className={styles.infoIcon} loading="lazy" decoding="async" />
           <span>LinkedIn</span>
         </motion.a>
         <motion.a

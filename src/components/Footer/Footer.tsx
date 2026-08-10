@@ -39,7 +39,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             title="Send Email to Maithreyan D"
           >
-            <img src="/assets/email.png" alt="Email Maithreyan D" />
+            <img src="/assets/email.png" alt="Email Maithreyan D" loading="lazy" decoding="async" />
           </a>
           <a
             href={AUTHOR.linkedin}
@@ -48,7 +48,7 @@ export default function Footer() {
             rel="me noopener noreferrer"
             title="Maithreyan D LinkedIn Profile"
           >
-            <img src="/assets/linkedin.png" alt="Maithreyan D LinkedIn" />
+            <img src="/assets/linkedin.png" alt="Maithreyan D LinkedIn" loading="lazy" decoding="async" />
           </a>
           <a
             href={AUTHOR.github}
@@ -57,7 +57,7 @@ export default function Footer() {
             rel="me noopener noreferrer"
             title="Maithreyan D GitHub Profile"
           >
-            <img src="/assets/github.png" alt="Maithreyan D GitHub" />
+            <img src="/assets/github.png" alt="Maithreyan D GitHub" loading="lazy" decoding="async" />
           </a>
           <a
             href={AUTHOR.instagram}

@@ -163,6 +163,10 @@ export default function Hero() {
           className={styles.profilePic}
           style={{ x: tx, y: ty, rotateX: rx, rotateY: ry }}
           draggable={false}
+          loading="eager"
+          // @ts-expect-error fetchpriority attribute
+          fetchpriority="high"
+          decoding="async"
         />
       </motion.div>
 

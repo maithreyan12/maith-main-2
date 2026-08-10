@@ -7,10 +7,10 @@
 - **Role**: Full-Stack Developer, Flutter Mobile App Specialist, Founder of Appziio
 - **Education**: B.Tech in Information Technology, C. Abdul Hakeem College of Engineering & Technology (Anna University)
 - **Key Achievement**: Developed & published the commercial **Mugundhan Textile E-Commerce App** on the Google Play Store (`com.mukundhantextile.app`).
-- **Primary Domain**: https://maithreyan.vercel.app/
+- **Primary Domain**: https://maithreyan.in/
 
 ## Contact & Profiles
-- **Website**: https://maithreyan.vercel.app/
+- **Website**: https://maithreyan.in/
 - **Email**: maithreyan2006@gmail.com
 - **LinkedIn**: https://www.linkedin.com/in/maithreyan-d-680261412/
 - **GitHub**: https://github.com/maithreyan12

@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://maithreyan.vercel.app/sitemap.xml
+Sitemap: https://maithreyan.in/sitemap.xml

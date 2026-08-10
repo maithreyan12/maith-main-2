@@ -10,16 +10,15 @@ export default defineConfig({
     minify: 'esbuild',
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'animation-vendor': ['framer-motion'],
+        manualChunks(id: string) {
+          if (id.includes('node_modules/framer-motion')) {
+            return 'animation-vendor';
+          }
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
+            return 'react-vendor';
+          }
         },
       },
-    },
-  },
-  server: {
-    headers: {
-      'Cache-Control': 'public, max-age=31536000',
     },
   },
 });

@@ -34,37 +34,37 @@ export default function Footer() {
         <div className={styles.socials}>
           <a
             href={`mailto:${AUTHOR.email}`}
-            aria-label="Email"
+            aria-label="Email Maithreyan D"
             target="_blank"
             rel="noopener noreferrer"
-            title="Send Email"
+            title="Send Email to Maithreyan D"
           >
-            <img src="/assets/email.png" alt="Email" />
+            <img src="/assets/email.png" alt="Email Maithreyan D" />
           </a>
           <a
             href={AUTHOR.linkedin}
-            aria-label="LinkedIn"
+            aria-label="Maithreyan D LinkedIn Profile"
             target="_blank"
-            rel="noopener noreferrer"
-            title="LinkedIn Profile"
+            rel="me noopener noreferrer"
+            title="Maithreyan D LinkedIn Profile"
           >
-            <img src="/assets/linkedin.png" alt="LinkedIn" />
+            <img src="/assets/linkedin.png" alt="Maithreyan D LinkedIn" />
           </a>
           <a
             href={AUTHOR.github}
-            aria-label="GitHub"
+            aria-label="Maithreyan D GitHub Profile"
             target="_blank"
-            rel="noopener noreferrer"
-            title="GitHub Profile"
+            rel="me noopener noreferrer"
+            title="Maithreyan D GitHub Profile"
           >
-            <img src="/assets/github.png" alt="GitHub" />
+            <img src="/assets/github.png" alt="Maithreyan D GitHub" />
           </a>
           <a
             href={AUTHOR.instagram}
-            aria-label="Instagram"
+            aria-label="Maithreyan D Instagram Profile"
             target="_blank"
-            rel="noopener noreferrer"
-            title="Instagram Profile"
+            rel="me noopener noreferrer"
+            title="Maithreyan D Instagram Profile"
           >
             <svg
               width="18"

@@ -136,19 +136,19 @@ export default function Contact() {
         <motion.a
           href={AUTHOR.linkedin}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="me noopener noreferrer"
           className={styles.infoCard}
           whileHover={{ scale: 1.04, y: -2 }}
           whileTap={{ scale: 0.97 }}
           transition={{ type: "spring", stiffness: 380, damping: 22 }}
         >
-          <img src="/assets/linkedin.png" alt="LinkedIn" className={styles.infoIcon} />
+          <img src="/assets/linkedin.png" alt="Maithreyan D LinkedIn" className={styles.infoIcon} />
           <span>LinkedIn</span>
         </motion.a>
         <motion.a
           href={AUTHOR.instagram}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="me noopener noreferrer"
           className={styles.infoCard}
           whileHover={{ scale: 1.04, y: -2 }}
           whileTap={{ scale: 0.97 }}

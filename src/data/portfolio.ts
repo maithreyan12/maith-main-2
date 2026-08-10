@@ -7,7 +7,7 @@ export const AUTHOR = {
   shortName: "Maithreyan",
   bio: `<strong>Maithreyan D</strong> is a <strong>Full-Stack Developer</strong>, <strong>Android & iOS Specialist</strong>, and <strong>Founder of Appziio</strong>, currently pursuing a <strong>B.Tech in Information Technology</strong> at <strong>C. Abdul Hakeem College of Engineering & Technology (CAHCET)</strong>, affiliated with <strong>Anna University</strong>. He specializes in building high-performance mobile apps, scalable web platforms, and production-ready digital products using <strong>Flutter, React, Next.js, Node.js, TypeScript, Supabase, Firebase, and MongoDB</strong>.
 
-A key achievement is successfully developing and publishing the <strong>Mugundhan E-Commerce Textile App</strong> on the <strong>Google Play Store</strong>—delivering a complete commercial experience with real-time inventory, secure authentication, shopping cart, and order tracking. Beyond mobile apps, he actively creates <strong>business websites, admin dashboards, AI applications, and REST APIs</strong> built with a strong focus on <strong>performance, clean architecture, security, and exceptional UI/UX</strong>.
+A key achievement is successfully developing and publishing the <strong><a href="https://play.google.com/store/apps/details?id=com.mukundhantextile.app" target="_blank" rel="noopener noreferrer">Mugundhan E-Commerce Textile App</a></strong> live on the <strong><a href="https://play.google.com/store/apps/details?id=com.mukundhantextile.app" target="_blank" rel="noopener noreferrer">Google Play Store</a></strong>—delivering a complete commercial experience with real-time inventory, secure authentication, shopping cart, and order tracking. Beyond mobile apps, he actively creates <strong>business websites, admin dashboards, AI applications, and REST APIs</strong> built with a strong focus on <strong>performance, clean architecture, security, and exceptional UI/UX</strong>.
 
 As the founder of <strong>Appziio</strong>, he helps startups and businesses transform innovative ideas into powerful digital products. Driven by continuous learning, Maithreyan is constantly exploring <strong>Artificial Intelligence, Cloud Computing, Cross-Platform Development, and Modern Web Engineering</strong> to build impactful software used by people worldwide.`,
   email: "maithreyan2006@gmail.com",
@@ -232,26 +232,36 @@ export interface Project {
   image: string;
   githubUrl: string;
   liveUrl: string;
+  playStoreUrl?: string;
+  description?: string;
+  featured?: boolean;
+  badge?: string;
 }
 
 export const PROJECTS: Project[] = [
+  {
+    title: "Mugundhan Textile App",
+    image: "/assets/project-3.png",
+    githubUrl: "https://github.com/maithreyan12",
+    liveUrl: "https://mukundhantextile-c2ed0.firebaseapp.com/#/login",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.mukundhantextile.app",
+    description: "Production commercial E-Commerce mobile app deployed on Google Play Store featuring real-time inventory, secure authentication, cart, and order tracking.",
+    featured: true,
+    badge: "LIVE ON PLAY STORE",
+  },
   {
     title: "Sentiment Analysis",
     image: "/assets/project-1.png",
     githubUrl: "https://github.com/maithreyan12/antigravity-sentiment-sphere.git",
     liveUrl: "https://sentimentanalyse.vercel.app",
+    description: "AI-powered sentiment analysis platform with real-time NLP scoring and visual analytics dashboard.",
   },
   {
     title: "FakeNews-Detector",
     image: "/assets/project-2.png",
     githubUrl: "https://github.com/maithreyan12/fakenewsdetector",
     liveUrl: "https://fakenewsdetector-alpha.vercel.app/",
-  },
-  {
-    title: "Mugundhan Textile App",
-    image: "/assets/project-3.png",
-    githubUrl: "https://github.com/maithreyan12",
-    liveUrl: "https://mukundhantextile-c2ed0.firebaseapp.com/#/login",
+    description: "Machine learning fake news detection engine evaluating text credibility with high accuracy.",
   },
 ];
 
@@ -292,8 +302,8 @@ export const CHATBOT_KB = {
     response: `Maithreyan's technical skills include:\n\n**Mobile & Web:** Flutter, React, Next.js, TypeScript, JavaScript, HTML, CSS, SASS\n\n**Backend & Cloud:** Node.js, Express.js, MongoDB, Supabase, Firebase, PostgreSQL, REST APIs, Git`,
   },
   projects: {
-    triggers: ["project", "work", "portfolio", "build", "create", "made", "develop", "app"],
-    response: `Here are Maithreyan's key projects:\n\n📱 **Mugundhan Textile E-Commerce App** — Published on Google Play Store\n🔍 **Sentiment Analysis** — Live at sentimentanalyse.vercel.app\n📰 **FakeNews Detector** — Live at fakenewsdetector-alpha.vercel.app\n\nMore projects on GitHub: github.com/maithreyan12`,
+    triggers: ["project", "work", "portfolio", "build", "create", "made", "develop", "app", "playstore", "play store", "mugundhan", "mukundhan", "textile"],
+    response: `Here are Maithreyan's key projects:\n\n📱 **Mugundhan Textile E-Commerce App** (Flagship Play Store Release)\n▶️ **Google Play Store:** https://play.google.com/store/apps/details?id=com.mukundhantextile.app\n🌐 **Web App Demo:** https://mukundhantextile-c2ed0.firebaseapp.com/#/login\n\n🔍 **Sentiment Analysis** — Live at https://sentimentanalyse.vercel.app\n📰 **FakeNews Detector** — Live at https://fakenewsdetector-alpha.vercel.app\n\nMore projects on GitHub: https://github.com/maithreyan12`,
   },
   education: {
     triggers: ["education", "study", "college", "university", "degree", "student", "school", "gpa"],

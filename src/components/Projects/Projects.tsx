@@ -10,6 +10,12 @@ const ExternalIcon = () => (
   </svg>
 );
 
+const PlayStoreIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={styles.btnIcon}>
+    <path d="M3.609 1.814L15.422 12 3.609 22.186A1.84 1.84 0 0 1 3 20.814V3.186c0-.573.255-1.077.609-1.372zM16.924 13.256l2.946-2.525a1.166 1.166 0 0 0 0-1.462l-2.946-2.525-2.604 2.256 2.604 2.256zm-14.887 9.877c.438.307.994.331 1.488.081l10.457-5.69-2.316-2.006-9.629 7.615zM4.67 1.986l10.457 5.69-2.316 2.006L3.182 2.067a1.642 1.642 0 0 1 1.488-.081z"/>
+  </svg>
+);
+
 const SwipeUpHandIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.swipeIcon}>
     <path d="M12 19V5M5 12l7-7 7 7"/>
@@ -132,6 +138,13 @@ export default function Projects() {
                   <img src={project.image} alt={project.title} className={styles.projectImg} />
                   <div className={styles.imgOverlay} />
                   
+                  {/* Top Badge for Play Store App */}
+                  {project.badge && (
+                    <span className={styles.playStoreBadge}>
+                      <PlayStoreIcon /> {project.badge}
+                    </span>
+                  )}
+
                   {/* Side Corner Paper Tag */}
                   <span className={styles.paperTag}>
                     PROJECT 0{i + 1}
@@ -147,16 +160,39 @@ export default function Projects() {
 
                 {/* Card Footer */}
                 <div className={styles.cardFooter}>
-                  <h3 className={styles.projectTitle}>{project.title}</h3>
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.liveBtn}
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <ExternalIcon /> Live Demo
-                  </a>
+                  <div className={styles.cardInfo}>
+                    <h3 className={styles.projectTitle}>{project.title}</h3>
+                    {project.description && (
+                      <p className={styles.projectDesc}>{project.description}</p>
+                    )}
+                  </div>
+
+                  <div className={styles.btnGroup}>
+                    {project.playStoreUrl && (
+                      <a
+                        href={project.playStoreUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.playStoreBtn}
+                        onClick={(e) => e.stopPropagation()}
+                        title="View Mugundhan Textile App on Google Play Store"
+                      >
+                        <PlayStoreIcon /> Google Play
+                      </a>
+                    )}
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.liveBtn}
+                        onClick={(e) => e.stopPropagation()}
+                        title="View Web Demo"
+                      >
+                        <ExternalIcon /> {project.playStoreUrl ? "Web Demo" : "Live Demo"}
+                      </a>
+                    )}
+                  </div>
                 </div>
               </motion.div>
             );

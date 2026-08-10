@@ -38,6 +38,7 @@ async function downloadCV() {
 const TITLES = [
   "Full Stack Developer",
   "Flutter App Developer",
+  "Play Store App Publisher",
   "Android & iOS Developer",
   "MERN Stack Developer",
   "React & Next.js Developer",
@@ -243,16 +244,16 @@ export default function Hero() {
         </motion.div>
 
         <motion.div className={styles.socials} variants={itemVariants}>
-          <a href={`mailto:${AUTHOR.email}`} aria-label="Email" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
-            <img src="/assets/email.png" alt="Email" />
+          <a href={`mailto:${AUTHOR.email}`} aria-label="Email Maithreyan D" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
+            <img src="/assets/email.png" alt="Email Maithreyan D" />
           </a>
-          <a href={AUTHOR.linkedin} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
-            <img src="/assets/linkedin.png" alt="LinkedIn" />
+          <a href={AUTHOR.linkedin} aria-label="Maithreyan D LinkedIn Profile" target="_blank" rel="me noopener noreferrer" className={styles.socialIcon}>
+            <img src="/assets/linkedin.png" alt="Maithreyan D LinkedIn Profile" />
           </a>
-          <a href={AUTHOR.github} aria-label="GitHub" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
-            <img src="/assets/github.png" alt="GitHub" />
+          <a href={AUTHOR.github} aria-label="Maithreyan D GitHub Profile" target="_blank" rel="me noopener noreferrer" className={styles.socialIcon}>
+            <img src="/assets/github.png" alt="Maithreyan D GitHub Profile" />
           </a>
-          <a href={AUTHOR.instagram} aria-label="Instagram" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
+          <a href={AUTHOR.instagram} aria-label="Maithreyan D Instagram Profile" target="_blank" rel="me noopener noreferrer" className={styles.socialIcon}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
               <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />

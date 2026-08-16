@@ -7,7 +7,7 @@ export const AUTHOR = {
   shortName: "Maithreyan",
   bio: `<strong>Maithreyan D</strong> is a <strong>Full-Stack Developer</strong>, <strong>Android & iOS Specialist</strong>, and <strong>Founder of Appziio</strong>, currently pursuing a <strong>B.Tech in Information Technology</strong> at <strong>C. Abdul Hakeem College of Engineering & Technology (CAHCET)</strong>, affiliated with <strong>Anna University</strong>. He specializes in building high-performance mobile apps, scalable web platforms, and production-ready digital products using <strong>Flutter, React, Next.js, Node.js, TypeScript, Supabase, Firebase, and MongoDB</strong>.
 
-A key achievement is successfully developing and publishing the <strong><a href="https://play.google.com/store/apps/details?id=com.mukundhantextile.app" target="_blank" rel="noopener noreferrer">Mugundhan E-Commerce Textile App</a></strong> live on the <strong><a href="https://play.google.com/store/apps/details?id=com.mukundhantextile.app" target="_blank" rel="noopener noreferrer">Google Play Store</a></strong>—delivering a complete commercial experience with real-time inventory, secure authentication, shopping cart, and order tracking. Beyond mobile apps, he actively creates <strong>business websites, admin dashboards, AI applications, and REST APIs</strong> built with a strong focus on <strong>performance, clean architecture, security, and exceptional UI/UX</strong>.
+A key achievement is successfully developing and publishing the <strong><a href="https://play.google.com/store/apps/details?id=com.mukundhantextile.app" target="_blank" rel="noopener noreferrer">Mugundhan E-Commerce Textile App</a></strong> live on the <strong><a href="https://play.google.com/store/apps/details?id=com.mukundhantextile.app" target="_blank" rel="noopener noreferrer">Google Play Store</a></strong>—delivering a complete commercial experience with real-time inventory, secure authentication, shopping cart, and order tracking. He is also the architect and lead developer of <strong><a href="https://infogram26.in" target="_blank" rel="noopener noreferrer">INFogram'26 (infogram.in)</a></strong>, the official National Level Technical Symposium portal for CAHCET Dept of IT, featuring digital QR ticket passes, payment gateway, and organizer admin dashboards. Beyond mobile apps, he actively creates <strong>business websites, admin dashboards, AI applications, and REST APIs</strong> built with a strong focus on <strong>performance, clean architecture, security, and exceptional UI/UX</strong>.
 
 As the founder of <strong>Appziio</strong>, he helps startups and businesses transform innovative ideas into powerful digital products. Driven by continuous learning, Maithreyan is constantly exploring <strong>Artificial Intelligence, Cloud Computing, Cross-Platform Development, and Modern Web Engineering</strong> to build impactful software used by people worldwide.`,
   email: "maithreyan2006@gmail.com",
@@ -207,24 +207,24 @@ export interface SkillIcon {
 }
 
 export const SKILL_ICONS: SkillIcon[] = [
-  { name: "HTML5",       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",          color: "#e34f26" },
-  { name: "CSS3",        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",            color: "#1572b6" },
-  { name: "JavaScript",  icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg", color: "#f7df1e" },
-  { name: "TypeScript",  icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg", color: "#3178c6" },
-  { name: "React JS",    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",           color: "#61dafb" },
-  { name: "Node JS",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",         color: "#339933" },
-  { name: "Express JS",  icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg",       color: "#eeeeee" },
-  { name: "MongoDB",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",       color: "#47a248" },
-  { name: "Flutter",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg",       color: "#54c5f8" },
-  { name: "Dart",        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dart/dart-original.svg",             color: "#0175c2" },
-  { name: "Git",         icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",               color: "#f05032" },
-  { name: "GitHub",      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg",         color: "#eeeeee" },
-  { name: "SASS",        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sass/sass-original.svg",             color: "#cc6699" },
-  { name: "PostgreSQL",  icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg", color: "#4169e1" },
-  { name: "Figma",       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg",           color: "#f24e1e" },
-  { name: "Xcode",       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/xcode/xcode-original.svg",           color: "#147efb" },
-  { name: "VS Code",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg",         color: "#007acc" },
-  { name: "Python",      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",         color: "#3776ab" },
+  { name: "HTML5", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg", color: "#e34f26" },
+  { name: "CSS3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg", color: "#1572b6" },
+  { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg", color: "#f7df1e" },
+  { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg", color: "#3178c6" },
+  { name: "React JS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg", color: "#61dafb" },
+  { name: "Node JS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg", color: "#339933" },
+  { name: "Express JS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg", color: "#eeeeee" },
+  { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg", color: "#47a248" },
+  { name: "Flutter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg", color: "#54c5f8" },
+  { name: "Dart", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dart/dart-original.svg", color: "#0175c2" },
+  { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg", color: "#f05032" },
+  { name: "GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg", color: "#eeeeee" },
+  { name: "SASS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sass/sass-original.svg", color: "#cc6699" },
+  { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg", color: "#4169e1" },
+  { name: "Figma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg", color: "#f24e1e" },
+  { name: "Xcode", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/xcode/xcode-original.svg", color: "#147efb" },
+  { name: "VS Code", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg", color: "#007acc" },
+  { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg", color: "#3776ab" },
 ];
 
 export interface Project {
@@ -239,6 +239,15 @@ export interface Project {
 }
 
 export const PROJECTS: Project[] = [
+  {
+    title: "INFogram'26 Portal",
+    image: "/assets/infogram26.png",
+    githubUrl: "https://github.com/maithreyan12/INFOGRAM26-1",
+    liveUrl: "https://infogram26.in",
+    description: "Official National Level Technical Symposium web platform for CAHCET Dept of IT featuring event registrations, digital QR tickets, organizer admin workflow, and Razorpay integration.",
+    featured: true,
+    badge: "NATIONAL SYMPOSIUM PLATFORM",
+  },
   {
     title: "Mugundhan Textile App",
     image: "/assets/project-3.png",

@@ -75,19 +75,6 @@ export default function WorkExperience() {
                 <div className={styles.headerLeft}>
                   <span className={styles.typeBadge}>{exp.type}</span>
                   <h3 className={styles.role}>{exp.role}</h3>
-                  {exp.companyUrl ? (
-                    <a
-                      href={exp.companyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.company}
-                      aria-label={`Visit ${exp.company}`}
-                    >
-                      {exp.company} <ExternalIcon />
-                    </a>
-                  ) : (
-                    <span className={styles.company}>{exp.company}</span>
-                  )}
                 </div>
                 <div className={styles.headerRight}>
                   <span className={styles.period}>{exp.period}</span>

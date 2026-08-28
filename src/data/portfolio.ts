@@ -27,7 +27,6 @@ export const NAV_LINKS = [
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
-  { label: "Education", href: "#education" },
   { label: "Certificates", href: "#certificates" },
   { label: "Contact", href: "#contact" },
 ] as const;
@@ -49,22 +48,6 @@ export interface WorkExperience {
 }
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
-  {
-    id: "exp-appziio",
-    role: "Founder & Lead Software Engineer",
-    company: "Appziio",
-    companyUrl: "https://www.appziio.com",
-    type: "Full-Time · Founder",
-    period: "2024 – Present",
-    location: "Remote",
-    responsibilities: [
-      "Architected and delivered end-to-end full-stack SaaS platforms, cross-platform mobile apps, and custom web applications for client businesses.",
-      "Engineered scalable backend REST APIs using Node.js/Express, implemented JWT authentication, and managed cloud deployments on Firebase and Vercel.",
-      "Published commercial Flutter e-commerce application to the Google Play Store with automated release pipelines and cloud sync.",
-      "Led UI/UX design systems utilizing Figma, Framer Motion, and Tailwind CSS.",
-    ],
-    tech: ["Flutter", "React.js", "Node.js", "Firebase", "Supabase", "Figma"],
-  },
   {
     id: "exp-inamigos",
     role: "Web Development Intern",

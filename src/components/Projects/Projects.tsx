@@ -1,5 +1,5 @@
 import { useRef, useState, useCallback } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { PROJECTS } from "../../data/portfolio";
 import { scrollToSection } from "../../hooks/useScrollSpy";
 import styles from "./Projects.module.css";
@@ -23,7 +23,6 @@ const GithubIcon = () => (
 );
 
 const SPRING = { type: "spring" as const, stiffness: 420, damping: 34, mass: 1 };
-const EASE_OUT = { duration: 0.38, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] };
 
 export default function Projects() {
   const ref = useRef<HTMLElement>(null);
@@ -73,7 +72,6 @@ export default function Projects() {
             const pos = (i - activeIndex + total) % total;
             const isTop = pos === 0;
             const isSecond = pos === 1;
-            const isThird = pos >= 2;
 
             // Only render top 3 cards in the stack
             if (pos > 2) return null;

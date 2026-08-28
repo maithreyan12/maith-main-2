@@ -1,24 +1,35 @@
-# Maithreyan D — Full-Stack Developer & App Specialist
+# Maithreyan D — Full-Stack Developer & Mobile Application Specialist
 
 > Official Portfolio & Developer Profile for Maithreyan D (Founder of Appziio & Google Play Store App Publisher).
 
-## Overview
+## Personal Information
 - **Full Name**: Maithreyan D
-- **Role**: Full-Stack Developer, Flutter Mobile App Specialist, Founder of Appziio
-- **Education**: B.Tech in Information Technology, C. Abdul Hakeem College of Engineering & Technology (Anna University)
-- **Key Achievement**: Developed & published the commercial **Mugundhan Textile E-Commerce App** on the Google Play Store (`com.mukundhantextile.app`).
+- **Preferred Name**: Maithreyan
+- **Profession**: Full-Stack Developer, Mobile Application Engineer (Android & iOS / Flutter Specialist)
+- **Founder**: Appziio (Digital software development company)
+- **Education**: Bachelor of Technology (B.Tech) in Information Technology, C. Abdul Hakeem College of Engineering & Technology (CAHCET), affiliated with Anna University (2023 – 2027)
+- **Location**: Vellore, Tamil Nadu, India
 - **Primary Domain**: https://maithreyan.in/
 
-## Contact & Profiles
+## Key Highlights & Achievements
+- Published the commercial **Mugundhan Textile E-Commerce Mobile App** live on the **Google Play Store** (`com.mukundhantextile.app`).
+- Lead developer and architect for **INFogram'26** (infogram26.in) — National Level Technical Symposium portal with QR code passes and payment gateway.
+- Founder and lead engineer at **Appziio** (appziio.com), delivering full-stack web and mobile apps for businesses.
+
+## Contact & Official Links
 - **Website**: https://maithreyan.in/
 - **Email**: maithreyan2006@gmail.com
+- **Phone**: +91 93427 06675
 - **LinkedIn**: https://www.linkedin.com/in/maithreyan-d-680261412/
 - **GitHub**: https://github.com/maithreyan12
 - **Instagram**: https://www.instagram.com/maithreyan__12
 - **Appziio**: https://www.appziio.com
 - **Google Play Store App**: https://play.google.com/store/apps/details?id=com.mukundhantextile.app
+- **INFogram'26**: https://infogram26.in
 
-## Tech Stack & Skills
-- **Mobile**: Flutter, Dart, Android Studio, iOS, Play Store Publishing
-- **Frontend**: React, Next.js, TypeScript, JavaScript, HTML5, CSS3, Tailwind CSS
-- **Backend & Cloud**: Node.js, Express.js, MongoDB, Supabase, Firebase, REST APIs, Git
+## Technical Skills
+- **Mobile Development**: Flutter, Dart, Android Studio, Xcode, iOS, State Management, Google Play Console
+- **Frontend Development**: React.js, Next.js, TypeScript, JavaScript, HTML5, CSS3, Tailwind CSS, Framer Motion
+- **Backend & APIs**: Node.js, Express.js, RESTful APIs, JWT Authentication, Postman
+- **Databases & Cloud**: Firebase (Firestore, Auth, Realtime DB), Supabase, MongoDB, PostgreSQL, Vercel
+

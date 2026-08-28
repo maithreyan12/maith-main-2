@@ -3,48 +3,61 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://maithreyan.in/</loc>
-    <lastmod>2026-08-10</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://maithreyan.in/assets/profile-pic.png</image:loc>
-      <image:title>Maithreyan D — Full Stack &amp; App Developer</image:title>
-      <image:caption>Official Profile Photo of Maithreyan D</image:caption>
+      <image:title>Maithreyan D — Full-Stack Developer &amp; Mobile Engineer</image:title>
+      <image:caption>Official Profile Photo of Maithreyan D (Appziio Founder &amp; Developer)</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://maithreyan.in/assets/project-3.png</image:loc>
-      <image:title>Mugundhan Textile App — Google Play Store Release</image:title>
-      <image:caption>Mugundhan Textile E-Commerce Mobile Application</image:caption>
+      <image:title>Mugundhan Textile App by Maithreyan D — Google Play Store</image:title>
+      <image:caption>Mugundhan Textile E-Commerce Mobile Application developed by Maithreyan D</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://maithreyan.in/#about</loc>
-    <lastmod>2026-08-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://maithreyan.in/#projects</loc>
-    <lastmod>2026-08-10</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://maithreyan.in/#experience</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://maithreyan.in/#skills</loc>
-    <lastmod>2026-08-10</lastmod>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://maithreyan.in/#education</loc>
+    <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://maithreyan.in/#certificates</loc>
-    <lastmod>2026-08-10</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://maithreyan.in/#contact</loc>
-    <lastmod>2026-08-10</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 </urlset>
+

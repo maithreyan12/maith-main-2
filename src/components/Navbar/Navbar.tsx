@@ -5,7 +5,7 @@ import { useScrollSpy, scrollToSection } from "../../hooks/useScrollSpy";
 import { NAV_LINKS, AUTHOR } from "../../data/portfolio";
 import styles from "./Navbar.module.css";
 
-const SECTION_IDS = ["profile", "about", "skills", "experience", "projects", "contact"];
+const SECTION_IDS = ["profile", "about", "skills", "experience", "education", "projects", "certificates", "contact"];
 
 const MoonIcon = () => (
   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">

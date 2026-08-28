@@ -105,7 +105,7 @@ export default function Skills() {
       {/* Arrow down */}
       <button
         className={styles.arrowBtn}
-        onClick={() => scrollToSection("experience")}
+        onClick={() => scrollToSection("technical-expertise")}
         aria-label="Next section"
       >
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" opacity="0.22">

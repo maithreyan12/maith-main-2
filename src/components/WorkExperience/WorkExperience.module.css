@@ -1,0 +1,322 @@
+.section {
+  padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 4vw, 3rem) clamp(3rem, 6vw, 5rem);
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin: 0 0 0.65rem;
+  text-align: center;
+}
+
+.sectionTitle {
+  font-size: clamp(2.2rem, 6vw, 5rem);
+  font-weight: 900;
+  color: var(--text-primary);
+  margin: 0 0 clamp(2.5rem, 5vw, 4rem);
+  letter-spacing: clamp(-1.5px, -0.03em, -3px);
+  line-height: 1;
+  text-align: center;
+}
+
+:root:not([data-theme="dark"]) .sectionTitle {
+  color: #0f172a;
+}
+
+/* ── Timeline Layout ── */
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding-left: 2.5rem;
+}
+
+.timelineLine {
+  position: absolute;
+  left: 0.6rem;
+  top: 0.6rem;
+  bottom: 2rem;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    rgba(34, 211, 238, 0.8) 0%,
+    rgba(129, 140, 248, 0.7) 45%,
+    rgba(52, 211, 153, 0.5) 80%,
+    transparent 100%
+  );
+  border-radius: 2px;
+  transform-origin: top center;
+}
+
+[data-theme="dark"] .timelineLine {
+  background: linear-gradient(
+    180deg,
+    rgba(34, 211, 238, 0.6) 0%,
+    rgba(129, 140, 248, 0.5) 45%,
+    rgba(52, 211, 153, 0.35) 80%,
+    transparent 100%
+  );
+}
+
+/* ── Entry Row ── */
+.entry {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+}
+
+/* Timeline Dot */
+.dot {
+  position: absolute;
+  left: -2.5rem;
+  top: 1.4rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  background: var(--glass-strong);
+  backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(34, 211, 238, 0.6);
+  box-shadow:
+    0 0 0 4px rgba(34, 211, 238, 0.12),
+    0 4px 14px rgba(34, 211, 238, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dotInner {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #22d3ee 0%, #818cf8 100%);
+  box-shadow: 0 0 8px rgba(34, 211, 238, 0.7);
+}
+
+[data-theme="dark"] .dot {
+  border-color: rgba(34, 211, 238, 0.5);
+  background: rgba(14, 14, 22, 0.85);
+}
+
+/* ── Card ── */
+.card {
+  flex: 1;
+  background: var(--glass-strong);
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  border-radius: 22px;
+  border: 1px solid var(--glass-border);
+  padding: clamp(1.4rem, 3vw, 2rem) clamp(1.4rem, 3vw, 2rem);
+  box-shadow: var(--shadow-md);
+  transition: box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle top accent line */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(34, 211, 238, 0.7) 0%,
+    rgba(129, 140, 248, 0.7) 50%,
+    rgba(52, 211, 153, 0.5) 100%
+  );
+  border-radius: 22px 22px 0 0;
+}
+
+:root:not([data-theme="dark"]) .card {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 8px 36px rgba(0, 0, 0, 0.07),
+    0 0 0 1px rgba(255, 255, 255, 0.96) inset;
+}
+
+/* Card Header */
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.2rem;
+}
+
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.typeBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.75rem;
+  background: rgba(34, 211, 238, 0.12);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #0ea5e9;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  align-self: flex-start;
+}
+
+[data-theme="dark"] .typeBadge {
+  color: #22d3ee;
+  background: rgba(34, 211, 238, 0.1);
+  border-color: rgba(34, 211, 238, 0.25);
+}
+
+.role {
+  font-size: clamp(1.1rem, 2.4vw, 1.35rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+}
+
+:root:not([data-theme="dark"]) .role { color: #0f172a; }
+
+.company {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a.company:hover { color: #0ea5e9; }
+[data-theme="dark"] a.company:hover { color: #22d3ee; }
+
+.headerRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.period {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+:root:not([data-theme="dark"]) .period { color: #0f172a; }
+
+.location {
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+}
+
+/* Responsibilities list */
+.responsibilities {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.responsibilityItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.87rem;
+  font-weight: 450;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+:root:not([data-theme="dark"]) .responsibilityItem { color: #374151; }
+
+.checkIcon {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  color: #10b981;
+  display: flex;
+  align-items: center;
+}
+
+[data-theme="dark"] .checkIcon { color: #34d399; }
+
+/* Tech tags */
+.techRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.techTag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.techTag:hover {
+  border-color: rgba(34, 211, 238, 0.45);
+  color: var(--text-primary);
+}
+
+/* Arrow button */
+.arrowBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: block;
+  margin: clamp(2rem, 4vw, 3.5rem) auto 0;
+}
+
+.arrowImg {
+  width: 1.75rem;
+  height: 1.75rem;
+  opacity: 0.2;
+  filter: var(--icon-filter, none);
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .section { padding: 4rem 1rem 3rem; }
+  .timeline { padding-left: 2rem; }
+  .dot { left: -2rem; }
+  .cardHeader { flex-direction: column; }
+  .headerRight { align-items: flex-start; }
+  .period, .location { font-size: 0.8rem; }
+}
+
+@media (max-width: 480px) {
+  .sectionTitle { font-size: 2.2rem; }
+  .card { padding: 1.2rem; border-radius: 18px; }
+}

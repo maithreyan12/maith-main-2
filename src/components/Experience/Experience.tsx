@@ -9,7 +9,7 @@ export default function Experience() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="experience" ref={ref} className={styles.experience}>
+    <section id="technical-expertise" ref={ref} className={styles.experience}>
       <motion.p
         className={styles.eyebrow}
         initial={{ opacity: 0, y: 20 }}
@@ -65,8 +65,8 @@ export default function Experience() {
 
       <motion.button
         className={styles.arrowBtn}
-        onClick={() => scrollToSection("projects")}
-        aria-label="Scroll to Projects"
+        onClick={() => scrollToSection("experience")}
+        aria-label="Scroll to Experience"
         animate={{ y: [0, 6, 0] }}
         transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
       >

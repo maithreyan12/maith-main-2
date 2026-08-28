@@ -167,10 +167,19 @@ export default function Projects() {
                 {/* Card Footer */}
                 <div className={styles.cardFooter}>
                   <div className={styles.cardInfo}>
+                    <div className={styles.projectMeta}>
+                      <span className={styles.categoryBadge}>{project.category}</span>
+                    </div>
                     <h3 className={styles.projectTitle}>{project.title}</h3>
                     {project.description && (
                       <p className={styles.projectDesc}>{project.description}</p>
                     )}
+                    {/* Tech stack tags */}
+                    <div className={styles.techTags}>
+                      {project.tech.map((t) => (
+                        <span key={t} className={styles.techTag}>{t}</span>
+                      ))}
+                    </div>
                   </div>
 
                   <div className={styles.btnGroup}>
@@ -234,8 +243,8 @@ export default function Projects() {
 
       <motion.button
         className={styles.arrowBtn}
-        onClick={() => scrollToSection("contact")}
-        aria-label="Scroll to Contact"
+        onClick={() => scrollToSection("certificates")}
+        aria-label="Scroll to Certificates"
         animate={{ y: [0, 6, 0] }}
         transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
       >

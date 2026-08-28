@@ -38,12 +38,10 @@ async function downloadCV() {
 const TITLES = [
   "Full Stack Developer",
   "Flutter App Developer",
-  "Play Store App Publisher",
   "Android & iOS Developer",
-  "MERN Stack Developer",
+  "Play Store App Publisher",
   "React & Next.js Developer",
   "Backend Developer",
-  "UI/UX Designer",
   "AI Application Developer",
   "Founder @ Appziio",
 ];
@@ -228,22 +226,34 @@ export default function Hero() {
         {/* Buttons & Socials unchanged */}
         <motion.div className={styles.btnContainer} variants={itemVariants}>
           <motion.button
+            className={`${styles.btn} ${styles.btnFilled}`}
+            onClick={() => scrollToSection("projects")}
+            id="hero-view-projects-btn"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 380, damping: 22 }}
+          >
+            View Projects
+          </motion.button>
+          <motion.button
             className={`${styles.btn} ${styles.btnOutline}`}
+            onClick={() => scrollToSection("contact")}
+            id="hero-contact-btn"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 380, damping: 22 }}
+          >
+            Contact Me
+          </motion.button>
+          <motion.button
+            className={`${styles.btn} ${styles.btnGhost}`}
             onClick={downloadCV}
+            id="hero-download-cv-btn"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 380, damping: 22 }}
           >
             Download CV
-          </motion.button>
-          <motion.button
-            className={`${styles.btn} ${styles.btnFilled}`}
-            onClick={() => scrollToSection("contact")}
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 380, damping: 22 }}
-          >
-            Contact Info
           </motion.button>
         </motion.div>
 

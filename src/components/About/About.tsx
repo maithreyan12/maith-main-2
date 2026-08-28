@@ -95,8 +95,8 @@ export default function About() {
 
       <motion.button
         className={styles.arrowBtn}
-        onClick={() => scrollToSection("experience")}
-        aria-label="Scroll to Experience"
+        onClick={() => scrollToSection("skills")}
+        aria-label="Scroll to Skills"
         animate={{ y: [0, 6, 0] }}
         transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
       >

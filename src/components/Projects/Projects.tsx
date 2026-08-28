@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { useRef, useState, useCallback } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { PROJECTS } from "../../data/portfolio";
 import { scrollToSection } from "../../hooks/useScrollSpy";
 import styles from "./Projects.module.css";
@@ -22,26 +22,23 @@ const GithubIcon = () => (
   </svg>
 );
 
-const SwipeUpHandIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.swipeIcon}>
-    <path d="M12 19V5M5 12l7-7 7 7"/>
-  </svg>
-);
+const SPRING = { type: "spring" as const, stiffness: 420, damping: 34, mass: 1 };
+const EASE_OUT = { duration: 0.38, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] };
 
 export default function Projects() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   const [activeIndex, setActiveIndex] = useState(0);
-  const [exitDirection, setExitDirection] = useState<number | null>(null);
+  const total = PROJECTS.length;
 
-  const handleNext = () => {
-    setExitDirection(-350);
-    setTimeout(() => {
-      setActiveIndex((prev) => (prev + 1) % PROJECTS.length);
-      setExitDirection(null);
-    }, 220);
-  };
+  const handleNext = useCallback(() => {
+    setActiveIndex((prev) => (prev + 1) % total);
+  }, [total]);
+
+  const handleGoTo = useCallback((idx: number) => {
+    setActiveIndex(idx);
+  }, []);
 
   return (
     <section id="projects" ref={ref} className={styles.projects}>
@@ -62,177 +59,155 @@ export default function Projects() {
         Projects
       </motion.h2>
 
-      {/* ── Modern Paper Card Deck Showcase ── */}
       <div className={styles.deckWrapper}>
         <p className={styles.swipeHint}>
-          <SwipeUpHandIcon /> Click image or swipe up for next project paper
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: "#38bdf8", flexShrink: 0 }}>
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+          </svg>
+          Swipe up or tap card for next project
         </p>
 
+        {/* ── Card Stack ── */}
         <div className={styles.cardDeck}>
           {PROJECTS.map((project, i) => {
-            const position = (i - activeIndex + PROJECTS.length) % PROJECTS.length;
-            const isTop = position === 0;
+            const pos = (i - activeIndex + total) % total;
+            const isTop = pos === 0;
+            const isSecond = pos === 1;
+            const isThird = pos >= 2;
 
-            // Side-corner tilted paper offsets
-            let rotate = 0;
-            let xOffset = 0;
-            let yOffset = 0;
-            let scale = 1;
-            let opacity = 1;
-
-            if (position === 0) {
-              rotate = 0;
-              xOffset = 0;
-              yOffset = 0;
-              scale = 1;
-              opacity = 1;
-            } else if (position === 1) {
-              rotate = 4.2; // Tilted right corner paper
-              xOffset = 22;
-              yOffset = 20;
-              scale = 0.94;
-              opacity = 0.84;
-            } else {
-              rotate = -4.2; // Tilted left corner paper
-              xOffset = -22;
-              yOffset = 38;
-              scale = 0.88;
-              opacity = 0.65;
-            }
-
-            const zIndex = PROJECTS.length - position;
+            // Only render top 3 cards in the stack
+            if (pos > 2) return null;
 
             return (
               <motion.div
                 key={project.title}
                 className={`${styles.deckCard} ${isTop ? styles.topCard : styles.peekingCard}`}
-                style={{ zIndex }}
+                style={{ zIndex: total - pos }}
                 initial={false}
-                animate={
-                  isTop && exitDirection !== null
-                    ? { y: exitDirection, rotate: -8, opacity: 0, scale: 1.04 }
-                    : {
-                        y: yOffset,
-                        x: xOffset,
-                        rotate: rotate,
-                        scale: scale,
-                        opacity: opacity,
-                      }
-                }
-                transition={{
-                  duration: 0.45,
-                  ease: [0.16, 1, 0.3, 1],
+                animate={{
+                  y: isTop ? 0 : isSecond ? 18 : 34,
+                  x: isTop ? 0 : isSecond ? 18 : -18,
+                  rotate: isTop ? 0 : isSecond ? 3.5 : -3.5,
+                  scale: isTop ? 1 : isSecond ? 0.95 : 0.90,
+                  opacity: isTop ? 1 : isSecond ? 0.82 : 0.6,
                 }}
+                transition={SPRING}
                 drag={isTop ? "y" : false}
-                dragConstraints={{ top: 0, bottom: 0 }}
-                dragElastic={0.4}
+                dragConstraints={{ top: -20, bottom: 20 }}
+                dragElastic={{ top: 0.5, bottom: 0.05 }}
+                dragMomentum={false}
                 onDragEnd={(_, info) => {
-                  if (isTop && (info.offset.y < -50 || info.velocity.y < -200)) {
+                  if (isTop && (info.offset.y < -60 || info.velocity.y < -250)) {
                     handleNext();
                   }
                 }}
                 onClick={() => {
-                  if (isTop) {
-                    handleNext();
-                  } else {
-                    setActiveIndex(i);
+                  if (!isTop) {
+                    handleGoTo(i);
                   }
                 }}
+                whileDrag={isTop ? { scale: 1.02, rotate: -2, cursor: "grabbing" } : {}}
               >
-                {/* Image Container */}
+                {/* Image */}
                 <div className={styles.imgWrapper}>
-                  <img src={project.image} alt={project.title} className={styles.projectImg} loading="lazy" decoding="async" />
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className={styles.projectImg}
+                    loading={pos === 0 ? "eager" : "lazy"}
+                    decoding="async"
+                    draggable={false}
+                  />
                   <div className={styles.imgOverlay} />
-                  
-                  {/* Top Badge for Play Store App */}
+
                   {project.badge && (
                     <span className={styles.playStoreBadge}>
                       <PlayStoreIcon /> {project.badge}
                     </span>
                   )}
 
-                  {/* Side Corner Paper Tag */}
-                  <span className={styles.paperTag}>
-                    PROJECT 0{i + 1}
-                  </span>
+                  <span className={styles.paperTag}>PROJECT 0{i + 1}</span>
 
-                  {/* Swipe Up Hint Badge on Top Card */}
                   {isTop && (
-                    <div className={styles.swipeBadge}>
-                      <SwipeUpHandIcon /> Click / Swipe Up
+                    <div className={styles.swipeBadge} onClick={handleNext}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12 19V5M5 12l7-7 7 7"/>
+                      </svg>
+                      Swipe Up / Tap
                     </div>
                   )}
                 </div>
 
-                {/* Card Footer */}
+                {/* Card Footer — only full content on top card */}
                 <div className={styles.cardFooter}>
                   <div className={styles.cardInfo}>
                     <div className={styles.projectMeta}>
                       <span className={styles.categoryBadge}>{project.category}</span>
                     </div>
                     <h3 className={styles.projectTitle}>{project.title}</h3>
-                    {project.description && (
+                    {project.description && isTop && (
                       <p className={styles.projectDesc}>{project.description}</p>
                     )}
-                    {/* Tech stack tags */}
-                    <div className={styles.techTags}>
-                      {project.tech.map((t) => (
-                        <span key={t} className={styles.techTag}>{t}</span>
-                      ))}
-                    </div>
+                    {isTop && (
+                      <div className={styles.techTags}>
+                        {project.tech.map((t) => (
+                          <span key={t} className={styles.techTag}>{t}</span>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
-                  <div className={styles.btnGroup}>
-                    {project.playStoreUrl && (
-                      <a
-                        href={project.playStoreUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.playStoreBtn}
-                        onClick={(e) => e.stopPropagation()}
-                        title="View on Google Play Store"
-                      >
-                        <PlayStoreIcon /> Google Play
-                      </a>
-                    )}
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.liveBtn}
-                        onClick={(e) => e.stopPropagation()}
-                        title="View Live Site"
-                      >
-                        <ExternalIcon /> {project.playStoreUrl ? "Web Demo" : "Live Site"}
-                      </a>
-                    )}
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.githubBtn}
-                        onClick={(e) => e.stopPropagation()}
-                        title="View Source Code on GitHub"
-                      >
-                        <GithubIcon /> GitHub
-                      </a>
-                    )}
-                  </div>
+                  {isTop && (
+                    <div className={styles.btnGroup}>
+                      {project.playStoreUrl && (
+                        <a
+                          href={project.playStoreUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.playStoreBtn}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <PlayStoreIcon /> Google Play
+                        </a>
+                      )}
+                      {project.liveUrl && (
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.liveBtn}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <ExternalIcon /> {project.playStoreUrl ? "Web Demo" : "Live Site"}
+                        </a>
+                      )}
+                      {project.githubUrl && (
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.githubBtn}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <GithubIcon /> GitHub
+                        </a>
+                      )}
+                    </div>
+                  )}
                 </div>
               </motion.div>
             );
           })}
         </div>
 
-        {/* Paper Tabs Navigation */}
+        {/* Dot / Tab Navigation */}
         <div className={styles.paperTabsRow}>
           {PROJECTS.map((proj, idx) => (
             <button
               key={proj.title}
               className={`${styles.paperTab} ${idx === activeIndex ? styles.activePaperTab : ""}`}
-              onClick={() => setActiveIndex(idx)}
+              onClick={() => handleGoTo(idx)}
+              aria-label={`Go to project ${idx + 1}: ${proj.title}`}
             >
               <span className={styles.tabNum}>0{idx + 1}</span>
               <span className={styles.tabName}>{proj.title}</span>

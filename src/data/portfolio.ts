@@ -320,17 +320,6 @@ export const PROJECTS: Project[] = [
     tech: ["Flutter", "Dart", "Firebase", "Supabase", "Play Store"],
   },
   {
-    title: "Antigravity Platform",
-    image: "/assets/project-2.png",
-    githubUrl: "https://github.com/maithreyan12",
-    liveUrl: "",
-    description: "Modern full-stack web platform featuring glassmorphism UI, JWT authentication, analytics dashboard, RESTful APIs, optimized layout rendering, and component lifecycle optimization.",
-    featured: true,
-    badge: "FULL STACK",
-    category: "Full Stack",
-    tech: ["React.js", "Node.js", "Express", "MongoDB", "JWT"],
-  },
-  {
     title: "Sentiment Analysis",
     image: "/assets/project-1.png",
     githubUrl: "https://github.com/maithreyan12/antigravity-sentiment-sphere.git",

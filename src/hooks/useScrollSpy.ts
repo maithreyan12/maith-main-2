@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { getLenis } from "./useSmoothScroll";
 
 /**
  * Tracks which section is currently in the viewport using IntersectionObserver.
@@ -44,5 +45,8 @@ export function useScrollSpy(sectionIds: string[], options?: IntersectionObserve
  */
 export function scrollToSection(id: string) {
   const el = document.getElementById(id.replace("#", ""));
-  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (!el) return;
+  const lenis = getLenis();
+  if (lenis) lenis.scrollTo(el, { duration: 1.2 });
+  else el.scrollIntoView({ behavior: "smooth", block: "start" });
 }

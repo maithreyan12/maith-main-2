@@ -132,7 +132,7 @@ export default function Chatbot() {
             </div>
 
             {/* Messages */}
-            <div className={styles.messages} role="log" aria-live="polite">
+            <div className={styles.messages} role="log" aria-live="polite" data-lenis-prevent>
               {messages.map((msg) => (
                 <motion.div
                   key={msg.id}
@@ -189,13 +189,12 @@ export default function Chatbot() {
 
       {/* Toggle button */}
       <motion.button
-        className={styles.toggle}
+        className={`${styles.toggle} ${open ? "" : styles.toggleFloat}`}
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? "Close chatbot" : "Open chatbot"}
         aria-expanded={open}
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.94 }}
-        animate={open ? {} : { y: [0, -4, 0] }}
         transition={open ? {} : { repeat: Infinity, duration: 3, ease: "easeInOut" }}
       >
         <AnimatePresence mode="wait">

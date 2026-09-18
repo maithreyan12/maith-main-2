@@ -10,8 +10,11 @@ import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
 import Chatbot from "./components/Chatbot/Chatbot";
 import QuickMenu from "./components/QuickMenu/QuickMenu";
+import { useSmoothScroll } from "./hooks/useSmoothScroll";
 
 function App() {
+  useSmoothScroll();
+
   return (
     <ThemeProvider>
       <Navbar />

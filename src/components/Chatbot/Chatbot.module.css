@@ -27,6 +27,12 @@
 .toggle:hover {
   box-shadow: 0 12px 40px rgba(0,0,0,0.35);
 }
+/* Idle float — CSS `translate` runs on the compositor and composes with Motion's hover scale */
+.toggleFloat { animation: toggleFloat 3s ease-in-out infinite; }
+@keyframes toggleFloat {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -4px; }
+}
 
 .window {
   width: 360px;

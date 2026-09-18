@@ -3,7 +3,7 @@
    Black & White Only. No colors. Ultra-advanced iOS glass.
    ═══════════════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+/* Inter is loaded via <link> in index.html so it starts downloading before this CSS */
 
 /* ─── Light Mode (Apple Liquid Glass + Aurora Tint) ─── */
 :root {
@@ -138,6 +138,7 @@ body::after {
   content: '';
   position: fixed;
   inset: 0;
+  height: 100lvh;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 0;
@@ -167,8 +168,6 @@ button, a, input, textarea, select {
 img, video {
   max-width: 100%;
   -webkit-user-drag: none;
-  decoding: async;
-  content-visibility: auto;
 }
 
 /* GPU Hardware Acceleration for Buttery 120Hz Smooth Experience */

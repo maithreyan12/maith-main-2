@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTheme } from "../../context/ThemeContext";
 import { useScrollSpy, scrollToSection } from "../../hooks/useScrollSpy";
+import { getLenis } from "../../hooks/useSmoothScroll";
 import { NAV_LINKS, AUTHOR } from "../../data/portfolio";
 import styles from "./Navbar.module.css";
 
@@ -49,10 +50,13 @@ export default function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
+    if (menuOpen) getLenis()?.stop();
+    else getLenis()?.start();
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
 
   const handleNavClick = (href: string) => {
+    getLenis()?.start(); // menu stops Lenis; resume before scrolling
     scrollToSection(href);
     setMenuOpen(false);
   };

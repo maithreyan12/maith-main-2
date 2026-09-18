@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import type { BezierDefinition } from "framer-motion";
-import { motion, useMotionValue, useTransform, useSpring, AnimatePresence } from "framer-motion";
+import { motion, useMotionValue, useTransform, useSpring, useInView, AnimatePresence } from "framer-motion";
 import { AUTHOR } from "../../data/portfolio";
 import { scrollToSection } from "../../hooks/useScrollSpy";
 import styles from "./Hero.module.css";
@@ -36,13 +36,13 @@ async function downloadCV() {
 }
 
 const TITLES = [
-  "Full Stack Developer",
-  "Flutter App Developer",
+  "Software Development Associate",
+  "Mobile & Full-Stack Developer",
+  "Flutter App Specialist",
   "Android & iOS Developer",
   "Play Store App Publisher",
   "React & Next.js Developer",
-  "Backend Developer",
-  "AI Application Developer",
+  "Backend & Cloud Engineer",
   "Founder @ Appziio",
 ];
 
@@ -56,29 +56,8 @@ interface Particle {
   size: number;
 }
 
-export default function Hero() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const springConfig = { stiffness: 100, damping: 20 };
-  const tx = useSpring(useTransform(mouseX, [-1, 1], [-16, 16]), springConfig);
-  const ty = useSpring(useTransform(mouseY, [-1, 1], [-12, 12]), springConfig);
-  const rx = useSpring(useTransform(mouseY, [-1, 1], [6, -6]), springConfig);
-  const ry = useSpring(useTransform(mouseX, [-1, 1], [-6, 6]), springConfig);
-
-  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
-    const rect = containerRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    mouseX.set(((e.clientX - rect.left) / rect.width - 0.5) * 2);
-    mouseY.set(((e.clientY - rect.top) / rect.height - 0.5) * 2);
-  }
-  function handleMouseLeave() {
-    mouseX.set(0);
-    mouseY.set(0);
-  }
-
-  // ── Typewriter Logic ──
+/** Typewriter title — isolated so each keystroke re-renders only this, and idles while off-screen. */
+function Typewriter({ active }: { active: boolean }) {
   const [titleIndex, setTitleIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -102,6 +81,8 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
+    if (!active) return;
+
     const currentFullTitle = TITLES[titleIndex];
 
     let timer: ReturnType<typeof setTimeout>;
@@ -131,7 +112,61 @@ export default function Hero() {
     }
 
     return () => clearTimeout(timer);
-  }, [displayText, isDeleting, titleIndex, triggerSparkles]);
+  }, [active, displayText, isDeleting, titleIndex, triggerSparkles]);
+
+  return (
+    <div className={styles.titleWrapper}>
+      <span className={styles.titleText}>
+        {displayText}
+        <span className={styles.cursor} />
+      </span>
+
+      {/* Sparkle Particles Burst */}
+      <AnimatePresence>
+        {particles.map((p) => (
+          <motion.span
+            key={p.id}
+            className={styles.particle}
+            style={{
+              backgroundColor: p.color,
+              boxShadow: `0 0 10px ${p.color}`,
+              width: p.size,
+              height: p.size,
+            }}
+            initial={{ x: 0, y: 0, opacity: 1, scale: 1 }}
+            animate={{ x: p.x, y: p.y, opacity: 0, scale: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.75, ease: "easeOut" }}
+          />
+        ))}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const onScreen = useInView(sectionRef);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { stiffness: 100, damping: 20 };
+  const tx = useSpring(useTransform(mouseX, [-1, 1], [-16, 16]), springConfig);
+  const ty = useSpring(useTransform(mouseY, [-1, 1], [-12, 12]), springConfig);
+  const rx = useSpring(useTransform(mouseY, [-1, 1], [6, -6]), springConfig);
+  const ry = useSpring(useTransform(mouseX, [-1, 1], [-6, 6]), springConfig);
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const rect = containerRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    mouseX.set(((e.clientX - rect.left) / rect.width - 0.5) * 2);
+    mouseY.set(((e.clientY - rect.top) / rect.height - 0.5) * 2);
+  }
+  function handleMouseLeave() {
+    mouseX.set(0);
+    mouseY.set(0);
+  }
 
   const EASE: BezierDefinition = [0.22, 1, 0.36, 1];
 
@@ -145,7 +180,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="profile" className={styles.hero}>
+    <section id="profile" ref={sectionRef} className={styles.hero} data-offscreen={onScreen ? undefined : ""}>
       <motion.div
         ref={containerRef}
         className={styles.picContainer}
@@ -177,8 +212,8 @@ export default function Hero() {
         {/* Element 1: "HELLO, I AM" Handcrafted Liquid Platinum Badge */}
         <motion.div variants={itemVariants}>
           <motion.div
-            className={styles.greetingBadge}
-            animate={{ y: [0, -5, 0] }}
+            className={`${styles.greetingBadge} ${styles.greetingFloat}`}
+            style={{ y: 0 }}
             transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
             whileHover={{ scale: 1.04 }}
           >
@@ -195,32 +230,7 @@ export default function Hero() {
 
         {/* Element 2: Animated Typewriter Developer Title with Gradient Shimmer & Sparkle Spray */}
         <motion.div className={styles.titleContainer} variants={itemVariants}>
-          <div className={styles.titleWrapper}>
-            <span className={styles.titleText}>
-              {displayText}
-              <span className={styles.cursor} />
-            </span>
-
-            {/* Sparkle Particles Burst */}
-            <AnimatePresence>
-              {particles.map((p) => (
-                <motion.span
-                  key={p.id}
-                  className={styles.particle}
-                  style={{
-                    backgroundColor: p.color,
-                    boxShadow: `0 0 10px ${p.color}`,
-                    width: p.size,
-                    height: p.size,
-                  }}
-                  initial={{ x: 0, y: 0, opacity: 1, scale: 1 }}
-                  animate={{ x: p.x, y: p.y, opacity: 0, scale: 0 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.75, ease: "easeOut" }}
-                />
-              ))}
-            </AnimatePresence>
-          </div>
+          <Typewriter active={onScreen} />
         </motion.div>
 
         {/* Buttons & Socials unchanged */}
@@ -259,13 +269,13 @@ export default function Hero() {
 
         <motion.div className={styles.socials} variants={itemVariants}>
           <a href={`mailto:${AUTHOR.email}`} aria-label="Email Maithreyan D" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
-            <img src="/assets/email.png" alt="Email Maithreyan D" />
+            <img src="/assets/email.webp" alt="Email Maithreyan D" />
           </a>
           <a href={AUTHOR.linkedin} aria-label="Maithreyan D LinkedIn Profile" target="_blank" rel="me noopener noreferrer" className={styles.socialIcon}>
-            <img src="/assets/linkedin.png" alt="Maithreyan D LinkedIn Profile" />
+            <img src="/assets/linkedin.webp" alt="Maithreyan D LinkedIn Profile" />
           </a>
           <a href={AUTHOR.github} aria-label="Maithreyan D GitHub Profile" target="_blank" rel="me noopener noreferrer" className={styles.socialIcon}>
-            <img src="/assets/github.png" alt="Maithreyan D GitHub Profile" />
+            <img src="/assets/github.webp" alt="Maithreyan D GitHub Profile" />
           </a>
           <a href={AUTHOR.instagram} aria-label="Maithreyan D Instagram Profile" target="_blank" rel="me noopener noreferrer" className={styles.socialIcon}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -282,11 +292,12 @@ export default function Hero() {
         className={styles.arrowDown}
         onClick={() => scrollToSection("about")}
         aria-label="Scroll to About"
+        style={{ y: 0 }}
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1, y: [0, 8, 0] }}
-        transition={{ delay: 1.2, y: { repeat: Infinity, duration: 2, ease: "easeInOut" } }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
       >
-        <img src="/assets/arrow.png" alt="Scroll down" className={styles.arrowImg} />
+        <img src="/assets/arrow.webp" alt="Scroll down" className={styles.arrowImg} />
       </motion.button>
     </section>
   );

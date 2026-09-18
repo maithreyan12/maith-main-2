@@ -70,6 +70,13 @@ export default function WorkExperience() {
                 <div className={styles.headerLeft}>
                   <span className={styles.typeBadge}>{exp.type}</span>
                   <h3 className={styles.role}>{exp.role}</h3>
+                  {exp.companyUrl ? (
+                    <a href={exp.companyUrl} target="_blank" rel="noopener noreferrer" className={styles.company}>
+                      {exp.company}
+                    </a>
+                  ) : (
+                    <span className={styles.company}>{exp.company}</span>
+                  )}
                 </div>
                 <div className={styles.headerRight}>
                   <span className={styles.period}>{exp.period}</span>
@@ -100,15 +107,13 @@ export default function WorkExperience() {
         ))}
       </div>
 
-      <motion.button
+      <button
         className={styles.arrowBtn}
         onClick={() => scrollToSection("education")}
         aria-label="Scroll to Education"
-        animate={{ y: [0, 6, 0] }}
-        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
       >
-        <img src="/assets/arrow.png" alt="Arrow down" className={styles.arrowImg} />
-      </motion.button>
+        <img src="/assets/arrow.webp" alt="Arrow down" className={styles.arrowImg} />
+      </button>
     </section>
   );
 }

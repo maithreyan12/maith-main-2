@@ -1,19 +1,22 @@
-# Maithreyan D — Full-Stack Developer & Mobile Application Specialist
+# Maithreyan D — Software Development Associate | Mobile & Full-Stack Developer
 
-> Official Portfolio & Developer Profile for Maithreyan D (Founder of Appziio & Google Play Store App Publisher).
+> Official Portfolio & Developer Profile for Maithreyan D (Software Development Associate at PIAX Life Private Limited, Founder of Appziio & Google Play Store App Publisher).
 
 ## Personal Information
 - **Full Name**: Maithreyan D
 - **Preferred Name**: Maithreyan
-- **Profession**: Full-Stack Developer, Mobile Application Engineer (Android & iOS / Flutter Specialist)
+- **Profession**: Software Development Associate | Mobile & Full-Stack Developer (Flutter Specialist)
+- **Current Role**: Software Development Associate @ PIAX Life Private Limited (08/2026 – Present)
 - **Founder**: Appziio (Digital software development company)
 - **Education**: Bachelor of Technology (B.Tech) in Information Technology, C. Abdul Hakeem College of Engineering & Technology (CAHCET), affiliated with Anna University (2023 – 2027)
 - **Location**: Vellore, Tamil Nadu, India
 - **Primary Domain**: https://maithreyan.in/
 
 ## Key Highlights & Achievements
+- Maintain and extend PIAX digital products across 3 surfaces (web, mobile, and internal platforms) as sole developer reporting directly to Founder and CEO.
 - Published the commercial **Mugundhan Textile E-Commerce Mobile App** live on the **Google Play Store** (`com.mukundhantextile.app`).
-- Lead developer and architect for **INFogram'26** (infogram26.in) — National Level Technical Symposium portal with QR code passes and payment gateway.
+- Lead developer and architect for **INFogram'26** (infogram26.in) — National Level Technical Symposium portal with QR code passes and Razorpay payment gateway.
+- Built the **Tech Nexus Event Pass & Certificate Automation Platform** (technexus.maithreyan.in) with Excel bulk processing and automated email distribution.
 - Founder and lead engineer at **Appziio** (appziio.com), delivering full-stack web and mobile apps for businesses.
 
 ## Contact & Official Links
@@ -26,10 +29,13 @@
 - **Appziio**: https://www.appziio.com
 - **Google Play Store App**: https://play.google.com/store/apps/details?id=com.mukundhantextile.app
 - **INFogram'26**: https://infogram26.in
+- **Tech Nexus Platform**: https://technexus.maithreyan.in/
 
 ## Technical Skills
-- **Mobile Development**: Flutter, Dart, Android Studio, Xcode, iOS, State Management, Google Play Console
-- **Frontend Development**: React.js, Next.js, TypeScript, JavaScript, HTML5, CSS3, Tailwind CSS, Framer Motion
-- **Backend & APIs**: Node.js, Express.js, RESTful APIs, JWT Authentication, Postman
-- **Databases & Cloud**: Firebase (Firestore, Auth, Realtime DB), Supabase, MongoDB, PostgreSQL, Vercel
+- **Mobile Development**: Flutter, Dart, Android SDK, iOS Development, State Management, Google Play Store Publishing, Responsive UI
+- **Frontend Development**: React.js, Next.js, Vite, TypeScript, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Material UI, Framer Motion
+- **Backend & Cloud**: Node.js, Express.js, REST API, JWT Authentication, Firebase (Authentication, Firestore, Realtime Database), Supabase, Vercel
+- **Databases**: Firebase Firestore, Firebase Realtime Database, MongoDB, PostgreSQL, MySQL
+- **Tools & Design**: Android Studio, Xcode, VS Code, Git, GitHub, Postman, Figma, Razorpay Integration
+
 

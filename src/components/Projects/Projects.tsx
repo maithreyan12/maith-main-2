@@ -199,15 +199,13 @@ export default function Projects() {
         </div>
       </div>
 
-      <motion.button
+      <button
         className={styles.arrowBtn}
         onClick={() => scrollToSection("certificates")}
         aria-label="Scroll to Certificates"
-        animate={{ y: [0, 6, 0] }}
-        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
       >
-        <img src="/assets/arrow.png" alt="Arrow down" className={styles.arrowImg} />
-      </motion.button>
+        <img src="/assets/arrow.webp" alt="Arrow down" className={styles.arrowImg} />
+      </button>
     </section>
   );
 }

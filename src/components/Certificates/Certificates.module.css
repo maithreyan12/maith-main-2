@@ -39,8 +39,8 @@
 .tvScreen {
   position: relative;
   background: var(--glass-strong);
-  backdrop-filter: blur(48px) saturate(220%);
-  -webkit-backdrop-filter: blur(48px) saturate(220%);
+  backdrop-filter: saturate(220%); /* no blur: only the soft aurora is behind, so it was invisible but GPU-heavy */
+  -webkit-backdrop-filter: saturate(220%);
   border-radius: 32px;
   border: 1px solid var(--glass-border);
   overflow: hidden;
@@ -365,6 +365,11 @@
   cursor: pointer;
   display: block;
   margin: clamp(2rem, 4vw, 3.5rem) auto 0;
+  animation: arrowFloat 2s ease-in-out infinite;
+}
+@keyframes arrowFloat {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 6px; }
 }
 .arrowImg { width: 1.75rem; height: 1.75rem; opacity: 0.2; filter: var(--icon-filter, none); }
 

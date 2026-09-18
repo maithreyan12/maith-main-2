@@ -60,20 +60,21 @@ const slideVariants = {
 export default function Certificates() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const onScreen = useInView(ref);
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Auto-slide slideshow every 4.5 seconds
+  // Auto-slide slideshow every 4.5 seconds (idle while scrolled out of view)
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || !onScreen) return;
     const timer = setInterval(() => {
       setDirection(1);
       setActiveIndex((prev) => (prev === CERTIFICATES.length - 1 ? 0 : prev + 1));
     }, 4500);
     return () => clearInterval(timer);
-  }, [isPaused]);
+  }, [isPaused, onScreen]);
 
   const prevSlide = () => {
     setDirection(-1);
@@ -232,15 +233,13 @@ export default function Certificates() {
         </div>
       </motion.div>
 
-      <motion.button
+      <button
         className={styles.arrowBtn}
         onClick={() => scrollToSection("contact")}
         aria-label="Scroll to Contact"
-        animate={{ y: [0, 6, 0] }}
-        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
       >
-        <img src="/assets/arrow.png" alt="Arrow down" className={styles.arrowImg} />
-      </motion.button>
+        <img src="/assets/arrow.webp" alt="Arrow down" className={styles.arrowImg} />
+      </button>
     </section>
   );
 }

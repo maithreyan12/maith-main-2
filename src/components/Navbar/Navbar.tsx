@@ -68,7 +68,7 @@ export default function Navbar() {
         <motion.nav
           className={styles.pill}
           layout
-          transition={{ type: "spring", stiffness: 340, damping: 30 }}
+          transition={{ type: "spring", stiffness: 420, damping: 32 }}
           initial={{ y: -80, opacity: 0, scale: 0.85 }}
           animate={{
             y: 0,
@@ -109,7 +109,7 @@ export default function Navbar() {
                       <motion.span
                         className={styles.activePill}
                         layoutId="activePill"
-                        transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                        transition={{ type: "spring", stiffness: 460, damping: 34 }}
                       />
                     )}
                     <span style={{ position: "relative", zIndex: 1, fontWeight: isActive ? 700 : 500 }}>
@@ -166,7 +166,7 @@ export default function Navbar() {
             initial={{ clipPath: "ellipse(5% 5% at 92% 5%)" }}
             animate={{ clipPath: "ellipse(160% 160% at 92% 5%)" }}
             exit={{ clipPath: "ellipse(0% 0% at 92% 5%)" }}
-            transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
+            transition={{ duration: 0.35, ease: [0.76, 0, 0.24, 1] }}
             aria-modal="true"
             role="dialog"
           >
@@ -178,7 +178,7 @@ export default function Navbar() {
                     initial={{ opacity: 0, x: -40 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    transition={{ delay: 0.08 + i * 0.07, type: "spring", stiffness: 280, damping: 24 }}
+                    transition={{ delay: 0.04 + i * 0.05, type: "spring", stiffness: 340, damping: 24 }}
                   >
                     <motion.button
                       onClick={() => handleNavClick(link.href)}

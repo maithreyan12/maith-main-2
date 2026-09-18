@@ -172,11 +172,11 @@ export default function Hero() {
 
   const containerVariants = {
     hidden: {},
-    visible: { transition: { staggerChildren: 0.15 } },
+    visible: { transition: { staggerChildren: 0.10 } },
   };
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },
   };
 
   return (
@@ -188,7 +188,7 @@ export default function Hero() {
         onMouseLeave={handleMouseLeave}
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       >
         <motion.img
           src={AUTHOR.profilePic}
@@ -295,7 +295,7 @@ export default function Hero() {
         style={{ y: 0 }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
+        transition={{ delay: 0.7 }}
       >
         <img src="/assets/arrow.webp" alt="Scroll down" className={styles.arrowImg} />
       </motion.button>

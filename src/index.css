@@ -163,6 +163,7 @@ button, a, input, textarea, select {
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   user-select: none;
+  will-change: transform; /* pre-promote to GPU layer for instant tap response */
 }
 
 img, video {
@@ -182,6 +183,19 @@ html, body {
   scroll-behavior: smooth;
   touch-action: pan-y;
   text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent; /* remove 300ms tap delay globally */
+}
+
+/* GPU-accelerate sections for compositor-driven scroll — no paint on scroll */
+section {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Defer off-screen section rendering for faster initial paint */
+section:not(:first-of-type) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
 }
 
 @media (max-width: 768px) {

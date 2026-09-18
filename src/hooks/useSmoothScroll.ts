@@ -17,9 +17,11 @@ export function useSmoothScroll() {
   useEffect(() => {
     lenis = new Lenis({
       autoRaf: true,
-      lerp: 0.1,
+      lerp: 0.08,          // snappier catch-up (was 0.1)
       smoothWheel: true,
-      syncTouch: false,
+      syncTouch: true,     // native momentum on iOS/Android
+      wheelMultiplier: 1.1, // slightly faster wheel feel
+      touchMultiplier: 1.5, // more responsive touch drag
     });
     return () => {
       lenis?.destroy();

@@ -40,7 +40,7 @@ export default function QuickMenu() {
           title={item.label}
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.8 + i * 0.1 }}
+          transition={{ delay: 0.3 + i * 0.06 }}
           whileHover={{ scale: 1.1, x: -4 }}
           whileTap={{ scale: 0.95 }}
         >

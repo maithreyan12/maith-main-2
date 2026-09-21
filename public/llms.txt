@@ -17,6 +17,7 @@
 - Published the commercial **Mugundhan Textile E-Commerce Mobile App** live on the **Google Play Store** (`com.mukundhantextile.app`).
 - Lead developer and architect for **INFogram'26** (infogram26.in) — National Level Technical Symposium portal with QR code passes and Razorpay payment gateway.
 - Built the **Tech Nexus Event Pass & Certificate Automation Platform** (technexus.maithreyan.in) with Excel bulk processing and automated email distribution.
+- Certified by **AWS Training & Certification** in *Fundamentals of Machine Learning and Artificial Intelligence* (Sept 2026).
 - Founder and lead engineer at **Appziio** (appziio.com), delivering full-stack web and mobile apps for businesses.
 
 ## Contact & Official Links

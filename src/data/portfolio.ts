@@ -120,14 +120,14 @@ export interface Certificate {
 
 export const CERTIFICATES: Certificate[] = [
   {
-    id: "cert-playstore-publisher-2026",
-    title: "Google Play Store Publisher",
-    issuer: "Google Play Console",
-    date: "Published: 2026",
-    credentialId: "App ID: com.mukundhantextile.app",
-    skills: ["Flutter", "Mobile App Publishing", "Google Play Console", "Android Release Management"],
-    image: "/assets/project-3.webp",
-    verifyUrl: "https://play.google.com/store/apps/details?id=com.mukundhantextile.app",
+    id: "cert-aws-ml-ai-2026",
+    title: "Fundamentals of Machine Learning and Artificial Intelligence",
+    issuer: "AWS Training & Certification",
+    date: "September 20, 2026",
+    credentialId: "AWS Training & Certification Completion Certificate",
+    skills: ["Machine Learning", "Artificial Intelligence (AI)", "AWS Cloud", "Cloud Computing"],
+    image: "/assets/cert-aws-ml.webp",
+    verifyUrl: "/assets/Maithreyan-AWS-ML-AI-Certificate.pdf",
   },
   {
     id: "cert-tcs-ion-2025",

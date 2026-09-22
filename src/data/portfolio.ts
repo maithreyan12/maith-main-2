@@ -373,16 +373,6 @@ export const PROJECTS: Project[] = [
     category: "AI Application",
     tech: ["Python", "Machine Learning", "React.js"],
   },
-  {
-    title: "Maithreyan.in Developer Portfolio",
-    image: "/assets/project-portfolio.webp",
-    githubUrl: "https://github.com/maithreyan12/maith-main-2",
-    liveUrl: "https://maithreyan.in/",
-    description: "Personal developer portfolio built with React.js, TypeScript, and Vite, presenting projects, technical skills, professional experience, and verified certifications with modern UI/UX.",
-    badge: "OPEN SOURCE",
-    category: "Portfolio",
-    tech: ["React.js", "TypeScript", "Vite", "Framer Motion"],
-  },
 ];
 
 export const ABOUT_CARDS = [
